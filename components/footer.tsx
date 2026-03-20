@@ -130,15 +130,15 @@ export function Footer() {
             </h3>
             <ul className="flex flex-col gap-3">
               <li className="text-sm font-light text-muted-foreground">
-                <a href="tel:+380671234567" className="transition-colors hover:text-foreground">
-                  +380 067 1234 567
+                <a href="tel:+4930123456789" className="transition-colors hover:text-foreground">
+                  +49 30 1234 5678
                 </a>
               </li>
               <li className="text-sm font-light text-muted-foreground">
                 reservations@movitransfer.eu
               </li>
               <li className="text-sm font-light text-muted-foreground">
-                Warsaw, Poland
+                Berlin, Germany
               </li>
             </ul>
           </div>
