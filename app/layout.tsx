@@ -154,7 +154,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="font-sans antialiased bg-background text-foreground">
+      <body suppressHydrationWarning className="font-sans antialiased bg-background text-foreground">
         <LanguageProvider>
           <BookingProvider>
             {children}
