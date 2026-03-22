@@ -19,7 +19,7 @@ export default function SelfDriveForm() {
       <p className="mb-6 text-[9px] font-light tracking-[0.4em] text-silver/50 uppercase">
         Reserve self-drive
       </p>
-      <UniversalBookingForm />
+      <UniversalBookingForm lockedMode="rental" />
     </div>
   )
 }

@@ -3,31 +3,18 @@
 import { useState } from "react"
 import { ChevronDown } from "lucide-react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
-
-const FAQS = [
-  {
-    q: "Is full insurance included in the rental price?",
-    a: "Yes. All vehicles come with full Casco insurance and third-party liability coverage. There is no excess for standard damage unless caused by gross negligence.",
-  },
-  {
-    q: "Are child seats available?",
-    a: "Child seats and booster seats are available on request at no additional cost. Please mention the age and weight of the child when booking.",
-  },
-  {
-    q: "What payment methods do you accept?",
-    a: "We accept cash (EUR, USD, UAH, PLN), Visa / Mastercard, and bank transfer. Payment can be made at pickup or in advance by invoice.",
-  },
-  {
-    q: "Can I book a one-way trip with no return?",
-    a: "Absolutely. All routes are available as one-way transfers. Simply select your origin and destination in the booking form and leave the return date blank.",
-  },
-  {
-    q: "What happens if my flight is delayed?",
-    a: "We monitor all flight arrivals in real time. Your driver will wait at no extra charge for up to 60 minutes after the actual landing time.",
-  },
-]
+import { useTranslation } from "@/lib/language-context"
 
 export function RentalFAQ() {
+  const { t } = useTranslation()
+
+  const FAQS = [
+    { q: t.rentalPage.faq1Q, a: t.rentalPage.faq1A },
+    { q: t.rentalPage.faq2Q, a: t.rentalPage.faq2A },
+    { q: t.rentalPage.faq3Q, a: t.rentalPage.faq3A },
+    { q: t.rentalPage.faq4Q, a: t.rentalPage.faq4A },
+    { q: t.rentalPage.faq5Q, a: t.rentalPage.faq5A },
+  ]
   const { ref, isVisible } = useScrollReveal<HTMLElement>()
   const [open, setOpen] = useState<number | null>(null)
 
@@ -40,15 +27,15 @@ export function RentalFAQ() {
           <div className={`flex flex-col transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
             <div className="mb-6 flex items-center gap-4">
               <span className="h-px w-12 bg-silver/40" />
-              <span className="text-[11px] font-light tracking-[0.4em] text-silver uppercase">FAQ</span>
+              <span className="text-[11px] font-light tracking-[0.4em] text-silver uppercase">{t.rentalPage.faqLabel}</span>
             </div>
             <h2 className="mb-6 text-4xl font-extralight leading-tight tracking-tight text-foreground text-balance md:text-5xl">
-              Common
+              {t.rentalPage.faqHeadline1}
               <br />
-              <span className="text-silver">Questions</span>
+              <span className="text-silver">{t.rentalPage.faqHeadline2}</span>
             </h2>
             <p className="text-sm font-light leading-relaxed text-muted-foreground">
-              Everything you need to know about renting or booking a transfer with Movi Transfer. Still have questions? Call us any time.
+              {t.rentalPage.faqDescription}
             </p>
             <a
               href="tel:+380671234567"

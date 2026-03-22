@@ -1,44 +1,45 @@
 "use client"
 
 import { useTranslation } from "@/lib/language-context"
+import { useBooking } from "@/lib/booking-context"
 import { MoviLogo } from "@/components/logo"
 
 const ALL_ROUTES = [
   // Warsaw
-  { label: "Warsaw → Budapest",  href: "/routes" },
-  { label: "Warsaw → Gdańsk",    href: "/routes" },
-  { label: "Warsaw → Kraków",    href: "/routes" },
-  { label: "Warsaw → Berlin",    href: "/routes" },
-  { label: "Warsaw → Bratislava",href: "/routes" },
-  { label: "Warsaw → Vilnius",   href: "/routes" },
-  { label: "Warsaw → Zurich",    href: "/routes" },
-  { label: "Warsaw → Vienna",    href: "/routes" },
-  { label: "Warsaw → Prague",    href: "/routes" },
-  { label: "Warsaw → Wrocław",   href: "/routes" },
-  { label: "Warsaw → Poznań",    href: "/routes" },
+  { label: "Warsaw → Budapest",  from: "Warsaw",   to: "Budapest" },
+  { label: "Warsaw → Gdańsk",    from: "Warsaw",   to: "Gdańsk" },
+  { label: "Warsaw → Kraków",    from: "Warsaw",   to: "Kraków" },
+  { label: "Warsaw → Berlin",    from: "Warsaw",   to: "Berlin" },
+  { label: "Warsaw → Bratislava",from: "Warsaw",   to: "Bratislava" },
+  { label: "Warsaw → Vilnius",   from: "Warsaw",   to: "Vilnius" },
+  { label: "Warsaw → Zurich",    from: "Warsaw",   to: "Zürich" },
+  { label: "Warsaw → Vienna",    from: "Warsaw",   to: "Vienna" },
+  { label: "Warsaw → Prague",    from: "Warsaw",   to: "Prague" },
+  { label: "Warsaw → Wrocław",   from: "Warsaw",   to: "Wrocław" },
+  { label: "Warsaw → Poznań",    from: "Warsaw",   to: "Poznań" },
   // Kraków
-  { label: "Kraków → Wrocław",   href: "/routes" },
-  { label: "Kraków → Vienna",    href: "/routes" },
-  { label: "Kraków → Budapest",  href: "/routes" },
-  { label: "Kraków → Prague",    href: "/routes" },
-  { label: "Kraków → Gdańsk",    href: "/routes" },
-  { label: "Kraków → Zurich",    href: "/routes" },
-  { label: "Kraków → Zakopane",  href: "/routes" },
-  { label: "Kraków → Katowice",  href: "/routes" },
-  { label: "Kraków → Rzeszów",   href: "/routes" },
-  { label: "Kraków → Warsaw",    href: "/routes" },
+  { label: "Kraków → Wrocław",   from: "Kraków",   to: "Wrocław" },
+  { label: "Kraków → Vienna",    from: "Kraków",   to: "Vienna" },
+  { label: "Kraków → Budapest",  from: "Kraków",   to: "Budapest" },
+  { label: "Kraków → Prague",    from: "Kraków",   to: "Prague" },
+  { label: "Kraków → Gdańsk",    from: "Kraków",   to: "Gdańsk" },
+  { label: "Kraków → Zurich",    from: "Kraków",   to: "Zürich" },
+  { label: "Kraków → Zakopane",  from: "Kraków",   to: "Zakopane" },
+  { label: "Kraków → Katowice",  from: "Kraków",   to: "Katowice" },
+  { label: "Kraków → Rzeszów",   from: "Kraków",   to: "Rzeszów" },
+  { label: "Kraków → Warsaw",    from: "Kraków",   to: "Warsaw" },
   // Gdańsk
-  { label: "Gdańsk → Berlin",    href: "/routes" },
-  { label: "Gdańsk → Poznań",    href: "/routes" },
-  { label: "Gdańsk → Warsaw",    href: "/routes" },
-  { label: "Gdańsk → Kraków",    href: "/routes" },
+  { label: "Gdańsk → Berlin",    from: "Gdańsk",   to: "Berlin" },
+  { label: "Gdańsk → Poznań",    from: "Gdańsk",   to: "Poznań" },
+  { label: "Gdańsk → Warsaw",    from: "Gdańsk",   to: "Warsaw" },
+  { label: "Gdańsk → Kraków",    from: "Gdańsk",   to: "Kraków" },
   // Wrocław & others
-  { label: "Wrocław → Berlin",   href: "/routes" },
-  { label: "Wrocław → Dresden",  href: "/routes" },
-  { label: "Wrocław → Poznań",   href: "/routes" },
-  { label: "Poznań → Berlin",    href: "/routes" },
-  { label: "Katowice → Vienna",  href: "/routes" },
-  { label: "Łódź → Warsaw",      href: "/routes" },
+  { label: "Wrocław → Berlin",   from: "Wrocław",  to: "Berlin" },
+  { label: "Wrocław → Dresden",  from: "Wrocław",  to: "Dresden" },
+  { label: "Wrocław → Poznań",   from: "Wrocław",  to: "Poznań" },
+  { label: "Poznań → Berlin",    from: "Poznań",   to: "Berlin" },
+  { label: "Katowice → Vienna",  from: "Katowice", to: "Vienna" },
+  { label: "Łódź → Warsaw",      from: "Łódź",     to: "Warsaw" },
 ]
 
 // Split routes into 3 columns for desktop
@@ -51,12 +52,24 @@ const routeCols = [
 
 export function Footer() {
   const { t } = useTranslation()
+  const { setChauffeur, setMode } = useBooking()
+
+  const handleRouteClick = (from: string, to: string) => {
+    setMode("chauffeur")
+    setChauffeur({ originCity: from, destinationCity: to })
+    const el = document.getElementById("booking")
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" })
+    } else {
+      window.location.href = `/?from=${encodeURIComponent(from)}&to=${encodeURIComponent(to)}#booking`
+    }
+  }
 
   const serviceLinks = [
-    t.footer.internationalTransfer,
-    t.footer.airportPickup,
-    t.footer.businessTravel,
-    t.footer.eventTransport,
+    { label: t.footer.internationalTransfer, href: "/#services" },
+    { label: t.footer.airportPickup,         href: "/#services" },
+    { label: t.footer.businessTravel,        href: "/#services" },
+    { label: t.footer.eventTransport,        href: "/#services" },
   ]
 
   return (
@@ -77,17 +90,17 @@ export function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="mb-4 text-[10px] font-light tracking-[0.3em] text-silver/50 uppercase">
+            <h3 className="mb-4 text-[10px] font-light tracking-[0.3em] text-hint uppercase">
               {t.footer.servicesTitle}
             </h3>
             <ul className="flex flex-col gap-3">
               {serviceLinks.map((item) => (
-                <li key={item}>
+                <li key={item.label}>
                   <a
-                    href="#services"
+                    href={item.href}
                     className="text-sm font-light text-muted-foreground transition-colors hover:text-foreground"
                   >
-                    {item}
+                    {item.label}
                   </a>
                 </li>
               ))}
@@ -96,13 +109,13 @@ export function Footer() {
 
           {/* Quick nav */}
           <div>
-            <h3 className="mb-4 text-[10px] font-light tracking-[0.3em] text-silver/50 uppercase">
-              Navigation
+            <h3 className="mb-4 text-[10px] font-light tracking-[0.3em] text-hint uppercase">
+              {t.footer.navigation}
             </h3>
             <ul className="flex flex-col gap-3">
               <li>
                 <a href="/" className="text-sm font-light text-muted-foreground transition-colors hover:text-foreground">
-                  Home
+                  {t.footer.home}
                 </a>
               </li>
               <li>
@@ -125,7 +138,7 @@ export function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="mb-4 text-[10px] font-light tracking-[0.3em] text-silver/50 uppercase">
+            <h3 className="mb-4 text-[10px] font-light tracking-[0.3em] text-hint uppercase">
               {t.footer.contact}
             </h3>
             <ul className="flex flex-col gap-3">
@@ -135,10 +148,12 @@ export function Footer() {
                 </a>
               </li>
               <li className="text-sm font-light text-muted-foreground">
-                reservations@movitransfer.eu
+                <a href="mailto:reservations@movitransfer.eu" className="transition-colors hover:text-foreground">
+                  reservations@movitransfer.eu
+                </a>
               </li>
               <li className="text-sm font-light text-muted-foreground">
-                Berlin, Germany
+                {t.footer.location}
               </li>
             </ul>
           </div>
@@ -147,15 +162,15 @@ export function Footer() {
         {/* All Routes section */}
         <div className="py-10">
           <div className="flex items-center gap-4 mb-8">
-            <h3 className="text-[10px] font-light tracking-[0.3em] text-silver/50 uppercase shrink-0">
+            <h3 className="text-[10px] font-light tracking-[0.3em] text-hint uppercase shrink-0">
               {t.footer.popularRoutes}
             </h3>
             <span className="h-px flex-1 bg-border/20" />
             <a
               href="/routes"
-              className="text-[10px] font-light tracking-[0.25em] text-silver/40 uppercase transition-colors hover:text-silver/70 shrink-0"
+              className="text-[10px] font-light tracking-[0.25em] text-hint uppercase transition-colors hover:text-silver/70 shrink-0"
             >
-              View All &rarr;
+              {t.footer.viewAll} &rarr;
             </a>
           </div>
 
@@ -165,13 +180,14 @@ export function Footer() {
               <ul key={colIdx} className="flex flex-col">
                 {col.map((route) => (
                   <li key={route.label} className="border-b border-border/10 last:border-b-0">
-                    <a
-                      href={route.href}
-                      className="flex items-center justify-between py-2.5 text-sm font-light text-muted-foreground transition-colors hover:text-foreground group"
+                    <button
+                      type="button"
+                      onClick={() => handleRouteClick(route.from, route.to)}
+                      className="flex w-full items-center justify-between py-2.5 text-sm font-light text-muted-foreground transition-colors hover:text-foreground group cursor-pointer"
                     >
                       <span>{route.label}</span>
                       <span className="text-border/30 group-hover:text-silver/50 transition-colors text-xs">&rarr;</span>
-                    </a>
+                    </button>
                   </li>
                 ))}
               </ul>

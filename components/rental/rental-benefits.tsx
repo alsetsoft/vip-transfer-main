@@ -2,15 +2,17 @@
 
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import { Tag, Clock, RotateCcw, ShieldCheck } from "lucide-react"
-
-const BENEFITS = [
-  { Icon: Tag,        title: "Fixed Prices",       desc: "No surge pricing. The price you see is what you pay." },
-  { Icon: Clock,      title: "24 / 7 Support",     desc: "Round-the-clock assistance on every booking." },
-  { Icon: RotateCcw,  title: "Free Cancellation",  desc: "Cancel up to 24 h before departure at no cost." },
-  { Icon: ShieldCheck,title: "Vetted Drivers",      desc: "All chauffeurs pass background checks and training." },
-]
+import { useTranslation } from "@/lib/language-context"
 
 export function RentalBenefits() {
+  const { t } = useTranslation()
+
+  const BENEFITS = [
+    { Icon: Tag,        title: t.rentalPage.benefitFixedPrices,    desc: t.rentalPage.benefitFixedPricesDesc },
+    { Icon: Clock,      title: t.rentalPage.benefitSupport,        desc: t.rentalPage.benefitSupportDesc },
+    { Icon: RotateCcw,  title: t.rentalPage.benefitCancellation,   desc: t.rentalPage.benefitCancellationDesc },
+    { Icon: ShieldCheck,title: t.rentalPage.benefitDrivers,        desc: t.rentalPage.benefitDriversDesc },
+  ]
   const { ref, isVisible } = useScrollReveal<HTMLElement>()
 
   return (

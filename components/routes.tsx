@@ -4,14 +4,21 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import { ArrowUpRight, MapPin } from "lucide-react"
 import Image from "next/image"
 import { useTranslation } from "@/lib/language-context"
+import { useBooking } from "@/lib/booking-context"
 import { useState } from "react"
-import { RouteBookingModal, type RouteModalData } from "./route-booking-modal"
 
 export function Routes() {
   const { t } = useTranslation()
+  const { setChauffeur, setMode } = useBooking()
   const { ref, isVisible } = useScrollReveal<HTMLElement>()
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
-  const [selectedRoute, setSelectedRoute] = useState<RouteModalData | null>(null)
+
+  const handleRouteClick = (city: string) => {
+    setMode("chauffeur")
+    setChauffeur({ destinationCity: city })
+    const el = document.getElementById("booking")
+    if (el) el.scrollIntoView({ behavior: "smooth" })
+  }
 
   const routes = [
     { city: t.routes.warsaw, country: t.routes.poland, code: "WAW", distance: t.routes.hub, image: "/images/city-warsaw.jpg" },
@@ -57,7 +64,7 @@ export function Routes() {
               className="group relative h-[260px] overflow-hidden cursor-pointer sm:h-[340px] lg:h-[480px]"
             onMouseEnter={() => setHoveredIndex(0)}
             onMouseLeave={() => setHoveredIndex(null)}
-            onClick={() => setSelectedRoute(routes[0])}
+            onClick={() => handleRouteClick(routes[0].city)}
           >
             <Image
               src={routes[0].image}
@@ -69,17 +76,17 @@ export function Routes() {
               }`}
               priority
             />
-            {/* Overlay content */}
+            {/* Overlay content — always white text on dark image */}
               <div className="absolute inset-0 flex flex-col justify-between p-5 sm:p-8 lg:p-12">
               <div className="flex items-start justify-between">
-                <span className="text-[11px] font-light tracking-[0.4em] text-silver/70 uppercase">
+                <span className="text-[11px] font-light tracking-[0.4em] text-white/50 uppercase">
                   {routes[0].code}
                 </span>
                 <div
-                  className={`flex h-10 w-10 items-center justify-center border border-foreground/20 text-foreground/50 transition-all duration-500 ${
+                  className={`flex h-10 w-10 items-center justify-center border transition-all duration-500 ${
                     hoveredIndex === 0
-                      ? "bg-foreground text-background border-foreground rotate-0"
-                      : "rotate-45"
+                      ? "bg-white text-black border-white rotate-0"
+                      : "border-white/20 text-white/50 rotate-45"
                   }`}
                 >
                   <ArrowUpRight className="h-4 w-4" />
@@ -87,21 +94,21 @@ export function Routes() {
               </div>
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  <MapPin className="h-3 w-3 text-silver/60" />
-                  <span className="text-xs font-light tracking-widest text-silver/60 uppercase">
+                  <MapPin className="h-3 w-3 text-white/40" />
+                  <span className="text-xs font-light tracking-widest text-white/40 uppercase">
                     {routes[0].country}
                   </span>
                 </div>
-                <h3 className="text-3xl font-extralight tracking-wide text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+                <h3 className="text-3xl font-extralight tracking-wide text-white sm:text-5xl md:text-6xl lg:text-7xl">
                   {routes[0].city}
                 </h3>
                 <div className="mt-4 flex items-center gap-6">
-                  <span className="text-sm font-light text-foreground/50">
+                  <span className="text-sm font-light text-white/50">
                     {routes[0].distance}
                   </span>
-                  <span className="h-px flex-1 max-w-24 bg-foreground/15" />
+                  <span className="h-px flex-1 max-w-24 bg-white/15" />
                   <span
-                    className={`text-xs font-light tracking-widest text-silver/60 uppercase transition-all duration-500 ${
+                    className={`text-xs font-light tracking-widest text-white/40 uppercase transition-all duration-500 ${
                       hoveredIndex === 0 ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4"
                     }`}
                   >
@@ -126,7 +133,7 @@ export function Routes() {
               style={{ transitionDelay: `${400 + i * 100}ms` }}
               onMouseEnter={() => setHoveredIndex(i + 1)}
               onMouseLeave={() => setHoveredIndex(null)}
-              onClick={() => setSelectedRoute(route)}
+              onClick={() => handleRouteClick(route.city)}
             >
               <Image
                 src={route.image}
@@ -138,17 +145,17 @@ export function Routes() {
                   hoveredIndex === i + 1 ? "scale-110 brightness-[0.45]" : "scale-100 brightness-[0.3]"
                 }`}
               />
-              {/* Overlay */}
+              {/* Overlay — always white text on dark image */}
               <div className="absolute inset-0 flex flex-col justify-between p-3 sm:p-5 lg:p-6">
                 <div className="flex items-start justify-between">
-                  <span className="text-[10px] font-light tracking-[0.3em] text-silver/60 uppercase">
+                  <span className="text-[10px] font-light tracking-[0.3em] text-white/40 uppercase">
                     {route.code}
                   </span>
                   <div
-                    className={`flex h-8 w-8 items-center justify-center border border-foreground/20 text-foreground/50 transition-all duration-500 ${
+                    className={`flex h-8 w-8 items-center justify-center border transition-all duration-500 ${
                       hoveredIndex === i + 1
-                        ? "bg-foreground text-background border-foreground rotate-0"
-                        : "rotate-45"
+                        ? "bg-white text-black border-white rotate-0"
+                        : "border-white/20 text-white/50 rotate-45"
                     }`}
                   >
                     <ArrowUpRight className="h-3 w-3" />
@@ -156,16 +163,12 @@ export function Routes() {
                 </div>
                 <div>
                   <div className="flex items-center gap-1.5 mb-2">
-                    <MapPin className="h-2.5 w-2.5 text-silver/50" />
-                    <span className="text-[10px] font-light tracking-widest text-silver/50 uppercase">
+                    <MapPin className="h-2.5 w-2.5 text-white/40" />
+                    <span className="text-[10px] font-light tracking-widest text-white/40 uppercase">
                       {route.country}
                     </span>
                   </div>
-                  <h3
-                    className={`text-xl font-extralight tracking-wide text-foreground transition-all duration-500 sm:text-2xl lg:text-3xl ${
-                      hoveredIndex === i + 1 ? "translate-y-0" : "translate-y-0"
-                    }`}
-                  >
+                  <h3 className="text-xl font-extralight tracking-wide text-white transition-all duration-500 sm:text-2xl lg:text-3xl">
                     {route.city}
                   </h3>
                   <div
@@ -173,8 +176,8 @@ export function Routes() {
                       hoveredIndex === i + 1 ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
                     }`}
                   >
-                    <span className="text-xs font-light text-foreground/50">{route.distance}</span>
-                    <span className="h-px flex-1 bg-foreground/15" />
+                    <span className="text-xs font-light text-white/50">{route.distance}</span>
+                    <span className="h-px flex-1 bg-white/15" />
                   </div>
                 </div>
               </div>
@@ -192,11 +195,6 @@ export function Routes() {
         </p>
       </div>
 
-      {/* Route Booking Modal */}
-      <RouteBookingModal
-        route={selectedRoute}
-        onClose={() => setSelectedRoute(null)}
-      />
     </section>
   )
 }

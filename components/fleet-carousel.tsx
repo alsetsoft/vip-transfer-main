@@ -10,7 +10,7 @@ export function FleetCarousel() {
 
   const fleet = [
     {
-      image: "/images/fleet-sclass.jpg",
+      image: "/images/cars/mercedes-sclass.png",
       title: "Mercedes-Benz S-Class",
       subtitle: t.fleet.sClassSub,
       passengers: 3,
@@ -19,25 +19,16 @@ export function FleetCarousel() {
       highlight: t.fleet.sClassHighlight,
     },
     {
-      image: "/images/fleet-eclass.jpg",
+      image: "/images/cars/mercedes-eclass.png",
       title: "Mercedes-Benz E-Class",
       subtitle: t.fleet.eClassSub,
-      passengers: 3,
+      passengers: 4,
       trunk: "540 L",
       airConditioning: t.fleet.climate3,
       highlight: t.fleet.eClassHighlight,
     },
     {
-      image: "/images/fleet-gls.jpg",
-      title: "Mercedes-Benz GLS",
-      subtitle: t.fleet.glsSub,
-      passengers: 4,
-      trunk: "680 L",
-      airConditioning: t.fleet.climate4,
-      highlight: t.fleet.glsHighlight,
-    },
-    {
-      image: "/images/fleet-vclass.jpg",
+      image: "/images/cars/mercedes-vclass.png",
       title: "Mercedes-Benz V-Class",
       subtitle: t.fleet.vClassSub,
       passengers: 7,

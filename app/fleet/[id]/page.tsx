@@ -11,20 +11,37 @@ import { use } from 'react'
 
 const CAR_META: Record<string, { images: string[]; interior?: string }> = {
   sclass: {
-    images: ['/images/fleet-sclass.jpg'],
-    interior: '/images/fleet-sclass-interior.jpg',
+    images: ['/images/cars/mercedes-sclass.png'],
   },
   eclass: {
-    images: ['/images/fleet-eclass.jpg'],
-    interior: '/images/fleet-sclass-interior.jpg',
+    images: ['/images/cars/mercedes-eclass.png'],
   },
   vclass: {
-    images: ['/images/fleet-vclass.jpg'],
-    interior: '/images/fleet-vclass-interior.jpg',
+    images: ['/images/cars/mercedes-vclass.png'],
   },
-  gls: {
-    images: ['/images/fleet-gls.jpg'],
-    interior: '/images/fleet-sclass-interior.jpg',
+  passat: {
+    images: ['/images/cars/passat-b8.png'],
+  },
+  superb: {
+    images: ['/images/cars/skoda-superb.png'],
+  },
+  vito: {
+    images: ['/images/cars/mercedes-vito.png'],
+  },
+  a6: {
+    images: ['/images/cars/audi-a6.png'],
+  },
+  bmw5: {
+    images: ['/images/cars/bmw-5.png'],
+  },
+  glb: {
+    images: ['/images/cars/mercedes-glb.png'],
+  },
+  a8: {
+    images: ['/images/cars/audia8lsline.png'],
+  },
+  sprinter: {
+    images: ['/images/cars/mercedes-sprinter.png'],
   },
 }
 

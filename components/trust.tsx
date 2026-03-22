@@ -49,11 +49,11 @@ export function Trust() {
           }`}
         >
           <div className="flex items-center gap-4 mb-6">
-            <span className="h-px w-12 bg-silver/40" />
+            <span className="h-px w-12 bg-[var(--line-accent)]" />
             <span className="text-[11px] font-light tracking-[0.4em] text-silver uppercase">
               {t.trust.label}
             </span>
-            <span className="h-px w-12 bg-silver/40" />
+            <span className="h-px w-12 bg-[var(--line-accent)]" />
           </div>
           <h2 className="text-4xl font-extralight tracking-tight text-foreground md:text-5xl lg:text-6xl text-balance">
             {t.trust.title1}
@@ -75,13 +75,13 @@ export function Trust() {
               style={{ transitionDelay: `${400 + i * 150}ms` }}
             >
               <div className="mb-8 flex h-14 w-14 items-center justify-center border border-border/40 transition-colors group-hover:border-silver/30">
-                <feature.icon className="h-6 w-6 text-silver/70 transition-colors group-hover:text-silver" />
+                <feature.icon className="h-6 w-6 text-soft transition-colors group-hover:text-silver" />
               </div>
               <div className="mb-6">
                 <span className="text-3xl font-extralight text-foreground">
                   {feature.stat}
                 </span>
-                <span className="ml-2 text-[10px] font-light tracking-[0.3em] text-silver/50 uppercase">
+                <span className="ml-2 text-[10px] font-light tracking-[0.3em] text-hint uppercase">
                   {feature.statLabel}
                 </span>
               </div>

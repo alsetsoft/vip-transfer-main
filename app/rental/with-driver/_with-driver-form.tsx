@@ -19,7 +19,7 @@ export default function WithDriverForm() {
       <p className="mb-6 text-[9px] font-light tracking-[0.4em] text-silver/50 uppercase">
         Book with Driver
       </p>
-      <UniversalBookingForm />
+      <UniversalBookingForm lockedMode="chauffeur" />
     </div>
   )
 }

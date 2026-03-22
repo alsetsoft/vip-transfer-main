@@ -49,12 +49,94 @@ function FloatInput({
         onBlur={() => setFocused(false)}
         placeholder={focused ? placeholder : ""}
         className="border-b bg-transparent pb-2.5 text-sm font-light text-foreground outline-none transition-colors duration-300 placeholder:text-muted-foreground/30"
-        style={{ borderBottomColor: focused ? "oklch(0.75 0 0 / 0.7)" : "oklch(0.22 0 0)" }}
+        style={{ borderBottomColor: focused ? "var(--line-focus)" : "var(--line-dim)" }}
       />
-      <span
-        className="absolute bottom-0 left-0 h-px transition-all duration-500 ease-out"
-        style={{ width: focused ? "100%" : "0%", background: "oklch(0.75 0 0 / 0.6)" }}
+    </div>
+  )
+}
+
+/* ─── City Autocomplete ─────────────────────────────────── */
+const CITIES = [
+  { name: "Warsaw", country: "PL" }, { name: "Kyiv", country: "UA" },
+  { name: "Berlin", country: "DE" }, { name: "Prague", country: "CZ" },
+  { name: "Vienna", country: "AT" }, { name: "Budapest", country: "HU" },
+  { name: "Kraków", country: "PL" }, { name: "Lviv", country: "UA" },
+  { name: "Wrocław", country: "PL" }, { name: "Munich", country: "DE" },
+  { name: "Bratislava", country: "SK" }, { name: "Zürich", country: "CH" },
+  { name: "Amsterdam", country: "NL" }, { name: "Brussels", country: "BE" },
+  { name: "Paris", country: "FR" }, { name: "Hamburg", country: "DE" },
+  { name: "Frankfurt", country: "DE" }, { name: "Gdańsk", country: "PL" },
+  { name: "Poznań", country: "PL" }, { name: "Łódź", country: "PL" },
+  { name: "Katowice", country: "PL" }, { name: "Lublin", country: "PL" },
+  { name: "Rzeszów", country: "PL" }, { name: "Vilnius", country: "LT" },
+  { name: "Odesa", country: "UA" }, { name: "Dnipro", country: "UA" },
+  { name: "Kharkiv", country: "UA" }, { name: "Ternopil", country: "UA" },
+  { name: "Ivano-Frankivsk", country: "UA" }, { name: "Uzhhorod", country: "UA" },
+]
+
+function FloatCityInput({
+  id, label, placeholder, required, value, onChange,
+}: {
+  id: string; label: string; placeholder?: string; required?: boolean; value: string; onChange: (v: string) => void
+}) {
+  const [focused, setFocused] = useState(false)
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  const active = focused || value.length > 0
+
+  const filtered = value.length > 0
+    ? CITIES.filter(c => c.name.toLowerCase().includes(value.toLowerCase()))
+    : CITIES
+
+  useEffect(() => {
+    const h = (e: MouseEvent) => { if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false) }
+    document.addEventListener("mousedown", h)
+    return () => document.removeEventListener("mousedown", h)
+  }, [])
+
+  return (
+    <div ref={ref} className="relative flex flex-col">
+      <label
+        htmlFor={id}
+        className={`select-none font-light transition-all duration-300 ${
+          active
+            ? "text-[9px] tracking-[0.35em] text-silver/60 uppercase mb-1.5"
+            : "text-sm tracking-wide text-muted-foreground/50 mb-0 mt-4 pointer-events-none"
+        }`}
+      >
+        {label}
+      </label>
+      <input
+        id={id}
+        type="text"
+        required={required}
+        value={value}
+        autoComplete="off"
+        onChange={e => { onChange(e.target.value); setOpen(true) }}
+        onFocus={() => { setFocused(true); setOpen(true) }}
+        onBlur={() => setFocused(false)}
+        placeholder={focused ? placeholder : ""}
+        className="border-b bg-transparent pb-2.5 text-sm font-light text-foreground outline-none transition-colors duration-300 placeholder:text-muted-foreground/30"
+        style={{ borderBottomColor: focused ? "var(--line-focus)" : "var(--line-dim)" }}
       />
+      {open && filtered.length > 0 && (
+        <div className="absolute top-full left-0 right-0 z-50 mt-1 max-h-48 overflow-y-auto border border-[var(--line-dim)] bg-[var(--surface-dropdown)] shadow-2xl">
+          {filtered.map(city => (
+            <button
+              key={city.name}
+              type="button"
+              onMouseDown={e => e.preventDefault()}
+              onClick={() => { onChange(city.name); setOpen(false) }}
+              className={`flex w-full items-center justify-between px-4 py-2.5 text-sm font-light transition-colors hover:bg-[var(--surface-dropdown-hover)] ${
+                value === city.name ? "text-foreground" : "text-[oklch(0.6_0_0)]"
+              }`}
+            >
+              <span>{city.name}</span>
+              <span className="text-[10px] text-[var(--text-dim)]">{city.country}</span>
+            </button>
+          ))}
+        </div>
+      )}
     </div>
   )
 }
@@ -89,11 +171,7 @@ function FloatDate({
         onBlur={() => setFocused(false)}
         min={new Date().toISOString().split("T")[0]}
         className="border-b bg-transparent pb-2.5 text-sm font-light text-foreground outline-none transition-colors duration-300 [color-scheme:dark]"
-        style={{ borderBottomColor: focused ? "oklch(0.75 0 0 / 0.7)" : "oklch(0.22 0 0)" }}
-      />
-      <span
-        className="absolute bottom-0 left-0 h-px transition-all duration-500 ease-out"
-        style={{ width: focused ? "100%" : "0%", background: "oklch(0.75 0 0 / 0.6)" }}
+        style={{ borderBottomColor: focused ? "var(--line-focus)" : "var(--line-dim)" }}
       />
     </div>
   )
@@ -101,10 +179,11 @@ function FloatDate({
 
 /* ─── Passengers Stepper ─────────────────────────────────── */
 function PassengerStepper({ value, onChange }: { value: number; onChange: (v: number) => void }) {
+  const { t } = useTranslation()
   return (
     <div className="flex flex-col gap-1.5 mt-4">
-      <span className="text-[9px] font-light tracking-[0.35em] text-silver/60 uppercase">Passengers</span>
-      <div className="flex items-center gap-4 border-b pb-2.5" style={{ borderBottomColor: "oklch(0.22 0 0)" }}>
+      <span className="text-[9px] font-light tracking-[0.35em] text-silver/60 uppercase">{t.form.passengers}</span>
+      <div className="flex items-center gap-4 border-b pb-2.5" style={{ borderBottomColor: "var(--line-dim)" }}>
         <button
           type="button"
           onClick={() => onChange(Math.max(1, value - 1))}
@@ -121,7 +200,7 @@ function PassengerStepper({ value, onChange }: { value: number; onChange: (v: nu
           +
         </button>
         <span className="text-xs font-light text-muted-foreground/50">
-          {value === 1 ? "person" : "people"}
+          {value === 1 ? t.form.person : t.form.people}
         </span>
       </div>
     </div>
@@ -244,8 +323,8 @@ export function RouteBookingModal({ route, onClose }: Props) {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
               </svg>
             </div>
-            <p className="text-[10px] font-light tracking-[0.35em] text-silver/60 uppercase">Request Sent</p>
-            <h3 className="text-2xl font-extralight text-foreground">We'll be in touch shortly.</h3>
+            <p className="text-[10px] font-light tracking-[0.35em] text-silver/60 uppercase">{t.form.requestSent}</p>
+            <h3 className="text-2xl font-extralight text-foreground">{t.form.inTouchShortly}</h3>
             <p className="max-w-xs text-sm font-light leading-relaxed text-muted-foreground">
               Your transfer enquiry to {route.city} has been received. Our concierge team will contact you within 2 hours.
             </p>
@@ -253,7 +332,7 @@ export function RouteBookingModal({ route, onClose }: Props) {
               onClick={onClose}
               className="mt-4 border border-border/40 px-8 py-3 text-xs font-light tracking-[0.25em] text-muted-foreground uppercase transition-colors hover:border-silver/50 hover:text-foreground"
             >
-              Close
+              {t.form.close}
             </button>
           </div>
         ) : (
@@ -261,7 +340,7 @@ export function RouteBookingModal({ route, onClose }: Props) {
 
             {/* Direction Toggle */}
             <div className="mb-8">
-              <p className="mb-3 text-[9px] font-light tracking-[0.35em] text-silver/50 uppercase">Direction</p>
+              <p className="mb-3 text-[9px] font-light tracking-[0.35em] text-silver/50 uppercase">{t.form.direction}</p>
               <div className="grid grid-cols-2 border border-border/30">
                 <button
                   type="button"
@@ -292,30 +371,30 @@ export function RouteBookingModal({ route, onClose }: Props) {
 
             {/* Trip Details */}
             <div className="mb-8 border-b border-border/20 pb-8">
-              <p className="mb-4 text-[9px] font-light tracking-[0.35em] text-silver/50 uppercase">Trip Details</p>
+              <p className="mb-4 text-[9px] font-light tracking-[0.35em] text-silver/50 uppercase">{t.form.tripDetails}</p>
               <div className="grid gap-6 sm:grid-cols-2">
-                <FloatInput
+                <FloatCityInput
                   id="modal-city"
-                  label={direction === "to" ? `City in ${route.country}` : "Departure City"}
-                  placeholder="e.g. City center"
+                  label={direction === "to" ? `City in ${route.country}` : t.form.departureCity}
+                  placeholder={t.form.cityPlaceholder}
                   required
                   value={city}
                   onChange={setCity}
                 />
                 <PassengerStepper value={passengers} onChange={setPassengers} />
-                <FloatDate id="modal-date" label="Departure Date" required value={date} onChange={setDate} />
-                <FloatDate id="modal-return" label="Return Date (optional)" value={returnDate} onChange={setReturnDate} />
+                <FloatDate id="modal-date" label={t.form.departureDate} required value={date} onChange={setDate} />
+                <FloatDate id="modal-return" label={t.form.returnDateOptional} value={returnDate} onChange={setReturnDate} />
               </div>
             </div>
 
             {/* Contact Details */}
             <div className="mb-8 border-b border-border/20 pb-8">
-              <p className="mb-4 text-[9px] font-light tracking-[0.35em] text-silver/50 uppercase">Contact Details</p>
+              <p className="mb-4 text-[9px] font-light tracking-[0.35em] text-silver/50 uppercase">{t.form.contactDetails}</p>
               <div className="grid gap-6 sm:grid-cols-2">
-                <FloatInput id="modal-first" label="First Name" required value={firstName} onChange={setFirstName} />
-                <FloatInput id="modal-last" label="Last Name" required value={lastName} onChange={setLastName} />
-                <FloatInput id="modal-email" label="Email" type="email" required value={email} onChange={setEmail} placeholder="name@example.com" />
-                <FloatInput id="modal-phone" label="Phone" type="tel" value={phone} onChange={setPhone} placeholder="+380 067 1234 567" />
+                <FloatInput id="modal-first" label={t.form.firstName} required value={firstName} onChange={setFirstName} />
+                <FloatInput id="modal-last" label={t.form.lastName} required value={lastName} onChange={setLastName} />
+                <FloatInput id="modal-email" label={t.form.email} type="email" required value={email} onChange={setEmail} placeholder={t.form.emailPlaceholder} />
+                <FloatInput id="modal-phone" label={t.form.phone} type="tel" value={phone} onChange={setPhone} placeholder={t.form.phonePlaceholder} />
               </div>
             </div>
 
@@ -336,8 +415,8 @@ export function RouteBookingModal({ route, onClose }: Props) {
                       onClick={() => setPaymentType(option.id)}
                       className="relative flex flex-col items-start gap-1.5 px-4 py-4 text-left transition-all duration-300"
                       style={{
-                        borderBottom: `1px solid ${active ? "oklch(0.75 0 0 / 0.7)" : "oklch(0.22 0 0)"}`,
-                        background: active ? "oklch(0.14 0 0)" : "transparent",
+                        borderBottom: `1px solid ${active ? "var(--line-focus)" : "var(--line-dim)"}`,
+                        background: active ? "var(--surface-dropdown-hover)" : "transparent",
                       }}
                     >
                       <span className="flex items-center gap-2.5 w-full">
@@ -359,8 +438,6 @@ export function RouteBookingModal({ route, onClose }: Props) {
                         style={{ color: active ? "oklch(0.55 0 0)" : "oklch(0.38 0 0)" }}>
                         {option.desc}
                       </span>
-                      <span className="absolute bottom-0 left-0 h-px transition-all duration-500 ease-out"
-                        style={{ width: active ? "100%" : "0%", background: "oklch(0.75 0 0 / 0.5)" }} />
                     </button>
                   )
                 })}
@@ -384,8 +461,8 @@ export function RouteBookingModal({ route, onClose }: Props) {
                       onClick={() => setVehicleClass(option.id)}
                       className="relative flex flex-col gap-2 px-4 py-4 text-left transition-all duration-300"
                       style={{
-                        borderBottom: `1px solid ${active ? "oklch(0.75 0 0 / 0.7)" : "oklch(0.22 0 0)"}`,
-                        background: active ? "oklch(0.14 0 0)" : "transparent",
+                        borderBottom: `1px solid ${active ? "var(--line-focus)" : "var(--line-dim)"}`,
+                        background: active ? "var(--surface-dropdown-hover)" : "transparent",
                       }}
                     >
                       <span className="flex items-center gap-2.5">
@@ -407,8 +484,6 @@ export function RouteBookingModal({ route, onClose }: Props) {
                         style={{ color: active ? "oklch(0.55 0 0)" : "oklch(0.38 0 0)" }}>
                         {option.models}
                       </span>
-                      <span className="absolute bottom-0 left-0 h-px transition-all duration-500 ease-out"
-                        style={{ width: active ? "100%" : "0%", background: "oklch(0.75 0 0 / 0.5)" }} />
                     </button>
                   )
                 })}
@@ -426,14 +501,14 @@ export function RouteBookingModal({ route, onClose }: Props) {
                       : "text-sm tracking-wide text-muted-foreground/50 mb-0 mt-4"
                   }`}
                 >
-                  Special Requests
+                  {t.form.specialRequests}
                 </label>
                 <textarea
                   id="modal-notes"
                   rows={3}
                   value={notes}
                   onChange={e => setNotes(e.target.value)}
-                  placeholder={notes.length > 0 ? "Any special requirements..." : ""}
+                  placeholder={notes.length > 0 ? t.form.anySpecialRequirements : ""}
                   className="resize-none border-b border-border/30 bg-transparent pb-2.5 text-sm font-light text-foreground outline-none transition-colors placeholder:text-muted-foreground/30 focus:border-silver/50"
                 />
               </div>
@@ -449,14 +524,14 @@ export function RouteBookingModal({ route, onClose }: Props) {
               className="group relative w-full overflow-hidden border border-foreground bg-foreground py-4 text-xs font-light tracking-[0.3em] text-background uppercase transition-all duration-500 hover:bg-transparent hover:text-foreground disabled:opacity-70 flex items-center justify-center gap-2"
             >
               {loading ? (
-                <><span className="h-3.5 w-3.5 animate-spin rounded-full border border-current border-t-transparent" /><span>Sending...</span></>
+                <><span className="h-3.5 w-3.5 animate-spin rounded-full border border-current border-t-transparent" /><span>{t.form.sending}</span></>
               ) : (
-                <span>Request Transfer</span>
+                <span>{t.form.requestTransfer}</span>
               )}
             </button>
 
-            <p className="mt-4 text-center text-[10px] font-light text-muted-foreground/40">
-              Our concierge team responds within 2 hours.
+            <p className="mt-4 text-center text-[10px] font-light text-[oklch(0.55_0_0)]">
+              {t.form.conciergeResponse}
             </p>
           </form>
         )}

@@ -40,28 +40,28 @@ export function Hero() {
           quality={85}
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-background/60" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/30 to-transparent" />
+        <div className="absolute inset-0 bg-black/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
       </div>
 
       {/* Content */}
       <div className="relative z-10 mx-auto max-w-5xl px-4 text-center sm:px-6">
         {/* Tagline */}
         <div className="mb-4 inline-flex items-center gap-3 sm:mb-8">
-          <span className="h-px w-6 bg-silver sm:w-8" />
-          <span className="text-[10px] font-light tracking-[0.35em] text-silver uppercase sm:text-[11px] sm:tracking-[0.4em]">
+          <span className="h-px w-6 bg-white/50 sm:w-8" />
+          <span className="text-[10px] font-light tracking-[0.35em] text-white/70 uppercase sm:text-[11px] sm:tracking-[0.4em]">
             {t.hero.tagline}
           </span>
-          <span className="h-px w-6 bg-silver sm:w-8" />
+          <span className="h-px w-6 bg-white/50 sm:w-8" />
         </div>
 
         <h1
           ref={headlineRef}
-          className="mb-5 text-[2.2rem] font-extralight leading-[1.08] tracking-tight text-foreground text-balance sm:mb-8 sm:text-5xl md:text-7xl lg:text-8xl"
+          className="mb-5 text-[2.2rem] font-extralight leading-[1.08] tracking-tight text-white text-balance sm:mb-8 sm:text-5xl md:text-7xl lg:text-8xl"
         >
           {t.hero.headline1}
           <br />
-          <span className="font-light text-silver-light">{t.hero.headline2}</span>
+          <span className="font-light text-white/70">{t.hero.headline2}</span>
           <br />
           {t.hero.headline3}
         </h1>
@@ -73,7 +73,7 @@ export function Hero() {
 
         <p
           ref={subRef}
-          className="mx-auto mb-8 max-w-sm text-sm font-light leading-relaxed text-muted-foreground sm:max-w-xl sm:text-base sm:mb-12 md:text-lg"
+          className="mx-auto mb-8 max-w-sm text-sm font-light leading-relaxed text-white/60 sm:max-w-xl sm:text-base sm:mb-12 md:text-lg"
         >
           {t.hero.description}
         </p>
@@ -81,13 +81,13 @@ export function Hero() {
         <div ref={ctaRef} className="flex flex-col items-center gap-3 sm:flex-row sm:justify-center sm:gap-4">
           <a
             href="#booking"
-            className="group relative w-full overflow-hidden border border-foreground bg-foreground px-8 py-4 text-xs font-light tracking-[0.25em] text-primary-foreground uppercase transition-all duration-500 hover:bg-transparent hover:text-foreground sm:w-auto sm:px-10"
+            className="group relative w-full overflow-hidden border border-white bg-white px-8 py-4 text-xs font-light tracking-[0.25em] text-black uppercase transition-all duration-500 hover:bg-transparent hover:text-white sm:w-auto sm:px-10"
           >
             <span className="relative z-10">{t.hero.cta}</span>
           </a>
           <a
             href="#services"
-            className="group w-full border border-border px-8 py-4 text-xs font-light tracking-[0.25em] text-muted-foreground uppercase transition-all duration-500 hover:border-silver hover:text-foreground sm:w-auto sm:px-10"
+            className="group w-full border border-white/30 px-8 py-4 text-xs font-light tracking-[0.25em] text-white/70 uppercase transition-all duration-500 hover:border-white/60 hover:text-white sm:w-auto sm:px-10"
           >
             {t.hero.explore}
           </a>
@@ -97,13 +97,13 @@ export function Hero() {
       {/* Scroll Indicator */}
       <div className="absolute bottom-10 left-1/2 z-10 -translate-x-1/2 animate-bounce">
         <a href="#services" aria-label="Scroll to services">
-          <ArrowDown className="h-5 w-5 text-silver/60" />
+          <ArrowDown className="h-5 w-5 text-white/50" />
         </a>
       </div>
 
       {/* Decorative Side Lines */}
-      <div className="absolute left-8 top-1/4 hidden h-32 w-px bg-gradient-to-b from-transparent via-silver/20 to-transparent lg:block" />
-      <div className="absolute right-8 bottom-1/4 hidden h-32 w-px bg-gradient-to-b from-transparent via-silver/20 to-transparent lg:block" />
+      <div className="absolute left-8 top-1/4 hidden h-32 w-px bg-gradient-to-b from-transparent via-white/15 to-transparent lg:block" />
+      <div className="absolute right-8 bottom-1/4 hidden h-32 w-px bg-gradient-to-b from-transparent via-white/15 to-transparent lg:block" />
     </section>
   )
 }

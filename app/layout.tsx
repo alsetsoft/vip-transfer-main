@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import { LanguageProvider } from '@/lib/language-context'
 import { BookingProvider } from '@/lib/booking-context'
+import { ThemeProvider } from '@/lib/theme-context'
 import './globals.css'
 
 const _inter = Inter({ subsets: ["latin"], display: "swap", preload: true });
@@ -155,11 +156,13 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning className="font-sans antialiased bg-background text-foreground">
-        <LanguageProvider>
-          <BookingProvider>
-            {children}
-          </BookingProvider>
-        </LanguageProvider>
+        <ThemeProvider>
+          <LanguageProvider>
+            <BookingProvider>
+              {children}
+            </BookingProvider>
+          </LanguageProvider>
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>

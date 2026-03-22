@@ -86,13 +86,13 @@ export function FAQ() {
                         openIndex === i ? "text-foreground" : "text-muted-foreground"
                       } group-hover:text-foreground`}
                     >
-                      <span className="text-[10px] font-light text-silver/30 tabular-nums w-5">
+                      <span className="text-[10px] font-light text-faint tabular-nums w-5">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       {faq.question}
                     </span>
                     <ChevronDown
-                      className={`h-4 w-4 shrink-0 text-silver/40 transition-transform duration-300 ${
+                      className={`h-4 w-4 shrink-0 text-hint transition-transform duration-300 ${
                         openIndex === i ? "rotate-180" : ""
                       }`}
                     />

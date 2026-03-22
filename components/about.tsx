@@ -54,7 +54,7 @@ export function About() {
           >
             {/* Label */}
             <div className="flex items-center gap-4 mb-8">
-              <span className="h-px w-12 bg-silver/40" />
+              <span className="h-px w-12 bg-[var(--line-accent)]" />
               <span className="text-[11px] font-light tracking-[0.4em] text-silver uppercase">
                 {t.about.label}
               </span>
@@ -78,7 +78,7 @@ export function About() {
                 href="#booking"
                 className="group inline-flex items-center gap-3 text-sm font-light text-silver transition-colors hover:text-foreground"
               >
-                <span className="h-px w-8 bg-silver/40 transition-all duration-300 group-hover:w-12 group-hover:bg-foreground" />
+                <span className="h-px w-8 bg-[var(--line-accent)] transition-all duration-300 group-hover:w-12 group-hover:bg-foreground" />
                 {t.booking.label}
               </a>
             </div>
@@ -100,7 +100,7 @@ export function About() {
               <span className="text-2xl font-extralight tracking-tight text-foreground sm:text-3xl md:text-4xl">
                 {stat.value}
               </span>
-              <span className="text-[9px] font-light tracking-[0.2em] text-silver/70 uppercase sm:text-[10px] sm:tracking-[0.25em]">
+              <span className="text-[9px] font-light tracking-[0.2em] text-soft uppercase sm:text-[10px] sm:tracking-[0.25em]">
                 {stat.label}
               </span>
             </div>

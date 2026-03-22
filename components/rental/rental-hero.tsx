@@ -4,8 +4,10 @@ import { useEffect, useRef } from "react"
 import Image from "next/image"
 import { ArrowDown } from "lucide-react"
 import { UniversalBookingForm } from "@/components/universal-booking-form"
+import { useTranslation } from "@/lib/language-context"
 
 export function RentalHero() {
+  const { t } = useTranslation()
   const copyRef = useRef<HTMLDivElement>(null)
   const formRef = useRef<HTMLDivElement>(null)
 
@@ -49,23 +51,23 @@ export function RentalHero() {
             <div className="mb-6 inline-flex items-center gap-3">
               <span className="h-px w-8 bg-silver/60" />
               <span className="text-[10px] font-light tracking-[0.4em] text-silver uppercase">
-                Car Rental &amp; Transfers
+                {t.rentalPage.heroTagline}
               </span>
             </div>
 
             <h1 className="mb-6 text-[2.4rem] font-extralight leading-[1.07] tracking-tight text-foreground text-balance sm:text-5xl md:text-6xl lg:text-7xl">
-              Premium Rentals
+              {t.rentalPage.heroHeadline1}
               <br />
-              <span className="font-light text-silver">Across Europe</span>
+              <span className="font-light text-silver">{t.rentalPage.heroHeadline2}</span>
             </h1>
 
             <p className="mb-8 max-w-sm text-sm font-light leading-relaxed text-muted-foreground sm:max-w-lg sm:text-base">
-              Self-drive freedom or chauffeured comfort — choose the experience that suits your journey. Fixed prices, new-model fleet, zero hidden fees.
+              {t.rentalPage.heroDescription}
             </p>
 
             {/* Quick trust pills */}
             <div className="flex flex-wrap gap-x-6 gap-y-2">
-              {["Fixed price", "Free cancellation", "24 / 7 support", "Full insurance"].map(s => (
+              {[t.rentalPage.fixedPrice, t.rentalPage.freeCancellation, t.rentalPage.support247, t.rentalPage.fullInsurance].map(s => (
                 <span key={s} className="flex items-center gap-2 text-xs font-light text-muted-foreground/60">
                   <span className="h-px w-3 bg-silver/40" />
                   {s}

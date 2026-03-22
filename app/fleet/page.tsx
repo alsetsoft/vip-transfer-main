@@ -8,10 +8,20 @@ import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 
 const CARS = [
-  { id: 'sclass', image: '/images/fleet-sclass.jpg', badge: 'flagship' },
-  { id: 'eclass', image: '/images/fleet-eclass.jpg', badge: null },
-  { id: 'vclass', image: '/images/fleet-vclass.jpg', badge: null },
-  { id: 'gls',    image: '/images/fleet-gls.jpg',    badge: null },
+  // Comfort
+  { id: 'passat',   image: '/images/cars/passat-b8.png',       badge: null,      category: 'Comfort' },
+  { id: 'superb',   image: '/images/cars/skoda-superb.png',    badge: null,      category: 'Comfort' },
+  { id: 'vito',     image: '/images/cars/mercedes-vito.png',   badge: null,      category: 'Comfort' },
+  // Business
+  { id: 'a6',       image: '/images/cars/audi-a6.png',         badge: null,      category: 'Business' },
+  { id: 'eclass',   image: '/images/cars/mercedes-eclass.png', badge: null,      category: 'Business' },
+  { id: 'bmw5',     image: '/images/cars/bmw-5.png',           badge: null,      category: 'Business' },
+  { id: 'glb',      image: '/images/cars/mercedes-glb.png',    badge: null,      category: 'Business' },
+  // Premium
+  { id: 'vclass',   image: '/images/cars/mercedes-vclass.png', badge: null,      category: 'Premium' },
+  { id: 'a8',       image: '/images/cars/audia8lsline.png',         badge: null,      category: 'Premium' },
+  { id: 'sprinter', image: '/images/cars/mercedes-sprinter.png', badge: null,    category: 'Premium' },
+  { id: 'sclass',   image: '/images/cars/mercedes-sclass.png', badge: 'flagship', category: 'Premium' },
 ]
 
 export default function FleetPage() {
@@ -33,12 +43,12 @@ export default function FleetPage() {
           />
         </div>
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
-          <p className="mb-4 text-[10px] font-light tracking-[0.4em] text-silver/50 uppercase">
+          <p className="mb-4 text-[10px] font-light tracking-[0.4em] text-hint uppercase">
             {t.fleet.label}
           </p>
           <h1 className="text-5xl font-light tracking-tight text-balance sm:text-6xl lg:text-7xl">
             {t.fleet.title1}{' '}
-            <span className="text-silver/60">{t.fleet.title2}</span>
+            <span className="text-subtle">{t.fleet.title2}</span>
           </h1>
           <p className="mt-6 max-w-2xl text-base font-light leading-relaxed text-muted-foreground">
             {t.fleet.description}
@@ -48,7 +58,7 @@ export default function FleetPage() {
 
       {/* Car Cards */}
       <section className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-12">
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {CARS.map((car) => {
             const carData = t.fleet.cars[car.id as keyof typeof t.fleet.cars]
             return (
@@ -72,8 +82,8 @@ export default function FleetPage() {
                   {/* Badge */}
                   {car.badge && (
                     <div className="absolute top-4 left-4 flex items-center gap-1.5 border border-silver/30 bg-black/50 px-2.5 py-1 backdrop-blur-sm">
-                      <Star className="h-2.5 w-2.5 text-silver/70" />
-                      <span className="text-[9px] font-light tracking-[0.3em] text-silver/80 uppercase">
+                      <Star className="h-2.5 w-2.5 text-soft" />
+                      <span className="text-[9px] font-light tracking-[0.3em] text-silver uppercase">
                         Flagship
                       </span>
                     </div>
@@ -105,15 +115,15 @@ export default function FleetPage() {
 
                   {/* Quick specs */}
                   <div className="mt-5 flex items-center gap-6 border-t border-border/20 pt-4">
-                    <div className="flex items-center gap-2 text-xs font-light text-muted-foreground/80">
-                      <Users className="h-3.5 w-3.5 text-silver/40" />
+                    <div className="flex items-center gap-2 text-xs font-light text-muted-foreground">
+                      <Users className="h-3.5 w-3.5 text-hint" />
                       {carData.passengers}
                     </div>
-                    <div className="flex items-center gap-2 text-xs font-light text-muted-foreground/80">
-                      <Briefcase className="h-3.5 w-3.5 text-silver/40" />
+                    <div className="flex items-center gap-2 text-xs font-light text-muted-foreground">
+                      <Briefcase className="h-3.5 w-3.5 text-hint" />
                       {carData.luggage}
                     </div>
-                    <div className="ml-auto text-[10px] font-light tracking-[0.2em] text-silver/40 uppercase">
+                    <div className="ml-auto text-[10px] font-light tracking-[0.2em] text-hint uppercase">
                       {t.fleet.year} {carData.year}
                     </div>
                   </div>

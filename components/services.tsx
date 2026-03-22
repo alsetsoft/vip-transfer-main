@@ -1,15 +1,53 @@
 "use client"
 
+import { useState } from "react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
-import { MapPin, Zap, UserCheck } from "lucide-react"
-import { FleetCarousel } from "./fleet-carousel"
+import { MapPin, Zap, UserCheck, Users } from "lucide-react"
 import { useTranslation } from "@/lib/language-context"
 import Image from "next/image"
+import Link from "next/link"
+
+type Category = "comfort" | "business" | "premium"
+
+interface FleetCar {
+  id: string
+  name: string
+  pax: string
+  image: string
+  category: Category
+}
+
+const FLEET_CARS: FleetCar[] = [
+  // Comfort
+  { id: "passat", name: "Volkswagen Passat B8", pax: "1–4", image: "/images/cars/passat-b8.png", category: "comfort" },
+  { id: "superb", name: "Skoda Superb L&K", pax: "1–4", image: "/images/cars/skoda-superb.png", category: "comfort" },
+  { id: "vito", name: "Mercedes-Benz Vito", pax: "1–7", image: "/images/cars/mercedes-vito.png", category: "comfort" },
+  // Business
+  { id: "a6", name: "Audi A6 S Line", pax: "1–4", image: "/images/cars/audi-a6.png", category: "business" },
+  { id: "eclass", name: "Mercedes-Benz E-Class", pax: "1–4", image: "/images/cars/mercedes-eclass.png", category: "business" },
+  { id: "bmw5", name: "BMW 5 Series", pax: "1–4", image: "/images/cars/bmw-5.png", category: "business" },
+  { id: "glb", name: "Mercedes-Benz GLB", pax: "1–5", image: "/images/cars/mercedes-glb.png", category: "business" },
+  // Premium
+  { id: "vclass", name: "Mercedes-Benz V-Class", pax: "1–7", image: "/images/cars/mercedes-vclass.png", category: "premium" },
+  { id: "a8", name: "Audi A8 S Line", pax: "1–3", image: "/images/cars/audia8lsline.png", category: "premium" },
+  { id: "sprinter", name: "Mercedes-Benz Sprinter", pax: "1–8", image: "/images/cars/mercedes-sprinter.png", category: "premium" },
+  { id: "sclass", name: "Mercedes-Benz S-Class", pax: "1–3", image: "/images/cars/mercedes-sclass.png", category: "premium" },
+]
 
 export function Services() {
   const { t } = useTranslation()
   const { ref: sectionRef, isVisible } = useScrollReveal<HTMLElement>()
   const { ref: cardsRef, isVisible: cardsVisible } = useScrollReveal<HTMLDivElement>()
+  const [activeCategory, setActiveCategory] = useState<Category>("comfort")
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+
+  const categories: { id: Category; label: string }[] = [
+    { id: "comfort", label: t.form.comfort },
+    { id: "business", label: t.form.business },
+    { id: "premium", label: t.form.premium },
+  ]
+
+  const filteredCars = FLEET_CARS.filter(car => car.category === activeCategory)
 
   const services = [
     {
@@ -40,7 +78,7 @@ export function Services() {
 
   return (
     <section id="services" ref={sectionRef} className="relative">
-      {/* Top: Section Header + Fleet Carousel */}
+      {/* Top: Section Header + Fleet Grid */}
       <div className="relative py-16 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
           {/* Header row */}
@@ -73,13 +111,82 @@ export function Services() {
             </div>
           </div>
 
-          {/* Full-width Fleet Carousel */}
+          {/* Category Tabs */}
           <div
-            className={`transition-all duration-1000 delay-300 ${
-              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+            className={`mb-10 flex gap-0 border border-border/30 transition-all duration-1000 delay-300 ${
+              isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
             }`}
           >
-            <FleetCarousel />
+            {categories.map(cat => (
+              <button
+                key={cat.id}
+                type="button"
+                onClick={() => { setActiveCategory(cat.id); setHoveredIndex(null) }}
+                className={`flex flex-1 items-center justify-center py-4 text-center transition-all duration-300 border-r border-border/30 last:border-r-0 ${
+                  activeCategory === cat.id
+                    ? "bg-foreground text-background"
+                    : "bg-transparent text-muted-foreground hover:text-foreground hover:bg-foreground/5"
+                }`}
+              >
+                <span className="text-xs font-light tracking-[0.2em] uppercase sm:text-sm">{cat.label}</span>
+              </button>
+            ))}
+          </div>
+
+          {/* Fleet Grid */}
+          <div
+            className={`grid grid-cols-1 gap-4 sm:grid-cols-2 lg:gap-5 transition-all duration-700 delay-400 ${
+              filteredCars.length <= 3 ? "lg:grid-cols-3" : "lg:grid-cols-4"
+            } ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+          >
+            {filteredCars.map((car, i) => (
+              <Link
+                key={car.id}
+                href={`/fleet/${car.id}`}
+                className="group relative flex flex-col overflow-hidden border border-border/20 bg-card/30 transition-all duration-500 hover:border-border/40"
+                onMouseEnter={() => setHoveredIndex(i)}
+                onMouseLeave={() => setHoveredIndex(null)}
+              >
+                {/* Image */}
+                <div className="relative h-[200px] overflow-hidden bg-secondary/20 sm:h-[220px] lg:h-[240px]">
+                  <Image
+                    src={car.image}
+                    alt={car.name}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                    className={`object-cover object-center transition-all duration-700 ${
+                      hoveredIndex === i ? "scale-105 brightness-75" : "scale-100 brightness-[0.6]"
+                    }`}
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                  {/* Pax badge */}
+                  <div className="absolute top-3 right-3 flex items-center gap-1.5 border border-white/20 bg-black/40 px-2.5 py-1 backdrop-blur-sm">
+                    <Users className="h-3 w-3 text-white/70" />
+                    <span className="text-[10px] font-light tracking-wider text-white/70">{car.pax}</span>
+                  </div>
+
+                  {/* Car name on image */}
+                  <div className="absolute bottom-0 left-0 right-0 p-5">
+                    <h3 className="text-sm font-light tracking-wide text-white sm:text-base">
+                      {car.name}
+                    </h3>
+                  </div>
+
+                  {/* Hover overlay with "View details" */}
+                  <div
+                    className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${
+                      hoveredIndex === i ? "opacity-100" : "opacity-0"
+                    }`}
+                  >
+                    <span className="text-[11px] font-light tracking-[0.2em] text-white uppercase border border-white/25 bg-black/40 px-4 py-2 backdrop-blur-sm">
+                      View details &rarr;
+                    </span>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </div>

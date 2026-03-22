@@ -29,15 +29,15 @@ export function Booking() {
             </p>
             <div className="mt-12 flex flex-col gap-4 border-t border-border/40 pt-8">
               <div className="flex items-center gap-4">
-                <span className="text-[10px] font-light tracking-[0.3em] text-silver/50 uppercase w-20">{t.booking.phone}</span>
-                <span className="text-sm font-light text-foreground">+49 30 1234 5678</span>
+                <span className="text-[10px] font-light tracking-[0.3em] text-hint uppercase w-20">{t.booking.phone}</span>
+                <a href="tel:+4930123456789" className="text-sm font-light text-foreground transition-colors hover:text-silver">+49 30 1234 5678</a>
               </div>
               <div className="flex items-center gap-4">
-                <span className="text-[10px] font-light tracking-[0.3em] text-silver/50 uppercase w-20">{t.booking.email}</span>
-                <span className="text-sm font-light text-foreground">reservations@movitransfer.eu</span>
+                <span className="text-[10px] font-light tracking-[0.3em] text-hint uppercase w-20">{t.booking.email}</span>
+                <a href="mailto:reservations@movitransfer.eu" className="text-sm font-light text-foreground transition-colors hover:text-silver">reservations@movitransfer.eu</a>
               </div>
               <div className="flex items-center gap-4">
-                <span className="text-[10px] font-light tracking-[0.3em] text-silver/50 uppercase w-20">{t.booking.hours}</span>
+                <span className="text-[10px] font-light tracking-[0.3em] text-hint uppercase w-20">{t.booking.hours}</span>
                 <span className="text-sm font-light text-foreground">{t.booking.availability}</span>
               </div>
             </div>

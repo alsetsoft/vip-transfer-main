@@ -109,17 +109,17 @@ function ReviewCard({
       }`}
       style={{ transitionDelay: `${400 + index * 120}ms` }}
     >
-      <Quote className="mb-6 h-5 w-5 text-silver/20" />
+      <Quote className="mb-6 h-5 w-5 text-ghost" />
       <div className="mb-5 flex gap-1">
         {Array.from({ length: review.rating }).map((_, i) => (
-          <Star key={i} className="h-3.5 w-3.5 fill-silver/60 text-silver/60" />
+          <Star key={i} className="h-3.5 w-3.5 fill-subtle text-subtle" />
         ))}
       </div>
       <p className="mb-8 flex-1 text-sm font-light leading-relaxed text-muted-foreground">
         {`"${review.text}"`}
       </p>
       <div className="mb-6">
-        <span className="inline-block border border-border/40 px-3 py-1 text-[10px] font-light tracking-[0.2em] text-silver/60 uppercase">
+        <span className="inline-block border border-border/40 px-3 py-1 text-[10px] font-light tracking-[0.2em] text-subtle uppercase">
           {review.route}
         </span>
       </div>

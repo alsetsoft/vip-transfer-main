@@ -85,7 +85,7 @@ export function BorderCrossing() {
               <span className="text-3xl font-extralight text-foreground lg:text-4xl">
                 {stat.value}
               </span>
-              <span className="text-[10px] font-light tracking-[0.2em] text-silver/60 uppercase">
+              <span className="text-[10px] font-light tracking-[0.2em] text-subtle uppercase">
                 {stat.label}
               </span>
             </div>
@@ -148,7 +148,7 @@ export function BorderCrossing() {
                           </h3>
                         )}
                         <div className="flex h-10 w-10 shrink-0 items-center justify-center border border-border/30 transition-colors group-hover:border-silver/25">
-                          <step.icon className="h-4.5 w-4.5 text-silver/60 transition-colors group-hover:text-silver" />
+                          <step.icon className="h-4.5 w-4.5 text-subtle transition-colors group-hover:text-silver" />
                         </div>
                         {(!isLeft || true) && (
                           <h3 className={`text-base font-light tracking-wide text-foreground ${isLeft ? "lg:hidden" : ""}`}>
