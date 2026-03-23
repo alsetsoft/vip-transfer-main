@@ -9,3 +9,4 @@ node_modules/
 .env*.local
 .mcp.json
 .DS_Store
+.vercel
