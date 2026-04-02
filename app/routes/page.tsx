@@ -2,9 +2,9 @@
 
 import { useState } from 'react'
 import Image from 'next/image'
+import { useRouter } from 'next/navigation'
 import { ArrowRight, Clock, Route as RouteIcon, ShieldCheck, Globe, Car, Info } from 'lucide-react'
 import { useTranslation } from '@/lib/language-context'
-import { useBooking } from '@/lib/booking-context'
 import { Navbar } from '@/components/navbar'
 import { Footer } from '@/components/footer'
 import { RouteDetailBlocks } from '@/components/route-detail-blocks'
@@ -24,6 +24,7 @@ const ROUTES = [
     border: 'Basel–Weil am Rhein',
     borderType: 'Road — Schengen Associated',
     highlights: ['Via Autobahn A5 & A3', 'Scenic Alpine approach', 'Comfort stops every 2–3 h'],
+    slug: 'warsaw-zurich',
   },
   {
     id: 'berlin',
@@ -38,6 +39,7 @@ const ROUTES = [
     border: 'Świecko–Frankfurt (Oder)',
     borderType: 'Road — EU Internal',
     highlights: ['Autobahn A2 direct', 'No border formalities', 'Express lane available'],
+    slug: 'warsaw-berlin',
   },
   {
     id: 'prague',
@@ -52,6 +54,7 @@ const ROUTES = [
     border: 'Kudowa-Zdrój–Náchod',
     borderType: 'Road — EU Internal (Schengen)',
     highlights: ['Scenic Sudeten route', 'No border checks', 'Highway D11 from Hradec Králové'],
+    slug: 'warsaw-prague',
   },
   {
     id: 'vienna',
@@ -66,6 +69,7 @@ const ROUTES = [
     border: 'Cieszyn–Český Těšín / Bratislava bypass',
     borderType: 'Road — EU Internal (Schengen)',
     highlights: ['A1 motorway via Bratislava', 'No border delays', 'Multiple comfort stops'],
+    slug: 'warsaw-vienna',
   },
   {
     id: 'budapest',
@@ -80,18 +84,16 @@ const ROUTES = [
     border: 'Cieszyn–Český Těšín / Rajka',
     borderType: 'Road — EU Internal (Schengen)',
     highlights: ['Via Bratislava or Brno', 'No passport control', 'M1 motorway to Budapest'],
+    slug: 'warsaw-budapest',
   },
 ]
 
 export default function RoutesPage() {
   const { t } = useTranslation()
-  const { setChauffeur, setMode } = useBooking()
+  const router = useRouter()
 
-  const handleRouteClick = (city: string) => {
-    setMode("chauffeur")
-    setChauffeur({ destinationCity: city })
-    const el = document.getElementById("booking")
-    if (el) el.scrollIntoView({ behavior: "smooth" })
+  const handleRouteClick = (slug: string) => {
+    router.push(`/routes/${slug}`)
   }
 
   const [hovered, setHovered] = useState<string | null>(null)
@@ -162,7 +164,7 @@ export default function RoutesPage() {
                   <ArrowRight className="h-3.5 w-3.5" />
                 </a>
                 <button
-                  onClick={() => handleRouteClick(t.routes.warsaw)}
+                  onClick={() => handleRouteClick('warsaw-berlin')}
                   className="inline-flex items-center gap-3 border border-border px-8 py-4 text-xs font-light tracking-[0.25em] text-foreground uppercase transition-all duration-300 hover:border-foreground/50"
                 >
                   {t.routes.hub} — {t.routes.warsaw}
@@ -234,7 +236,7 @@ export default function RoutesPage() {
                 onMouseEnter={() => setHovered(route.id)}
                 onMouseLeave={() => setHovered(null)}
                 onClick={() =>
-                  handleRouteClick(city)
+                  handleRouteClick(route.slug)
                 }
                 aria-label={`Book transfer to ${city}`}
               >

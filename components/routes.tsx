@@ -3,30 +3,27 @@
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import { ArrowUpRight, MapPin } from "lucide-react"
 import Image from "next/image"
+import { useRouter } from "next/navigation"
 import { useTranslation } from "@/lib/language-context"
-import { useBooking } from "@/lib/booking-context"
 import { useState } from "react"
 
 export function Routes() {
   const { t } = useTranslation()
-  const { setChauffeur, setMode } = useBooking()
+  const router = useRouter()
   const { ref, isVisible } = useScrollReveal<HTMLElement>()
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
 
-  const handleRouteClick = (city: string) => {
-    setMode("chauffeur")
-    setChauffeur({ destinationCity: city })
-    const el = document.getElementById("booking")
-    if (el) el.scrollIntoView({ behavior: "smooth" })
+  const handleRouteClick = (slug: string) => {
+    router.push(`/routes/${slug}`)
   }
 
   const routes = [
-    { city: t.routes.warsaw, country: t.routes.poland, code: "WAW", distance: t.routes.hub, image: "/images/city-warsaw.jpg" },
-    { city: t.routes.berlin, country: t.routes.germany, code: "BER", distance: "570 km", image: "/images/city-berlin.jpg" },
-    { city: t.routes.prague, country: t.routes.czech, code: "PRG", distance: "630 km", image: "/images/city-prague.jpg" },
-    { city: t.routes.zurich, country: t.routes.switzerland, code: "ZRH", distance: "840 km", image: "/images/city-zurich.jpg" },
-    { city: t.routes.vienna, country: t.routes.austria, code: "VIE", distance: "680 km", image: "/images/city-vienna.jpg" },
-    { city: t.routes.budapest, country: t.routes.hungary, code: "BUD", distance: "690 km", image: "/images/city-budapest.jpg" },
+    { city: t.routes.warsaw, country: t.routes.poland, code: "WAW", distance: t.routes.hub, image: "/images/city-warsaw.jpg", slug: "warsaw-berlin" },
+    { city: t.routes.berlin, country: t.routes.germany, code: "BER", distance: "570 km", image: "/images/city-berlin.jpg", slug: "warsaw-berlin" },
+    { city: t.routes.prague, country: t.routes.czech, code: "PRG", distance: "630 km", image: "/images/city-prague.jpg", slug: "warsaw-prague" },
+    { city: t.routes.zurich, country: t.routes.switzerland, code: "ZRH", distance: "840 km", image: "/images/city-warsaw.jpg", slug: "warsaw-zurich" },
+    { city: t.routes.vienna, country: t.routes.austria, code: "VIE", distance: "680 km", image: "/images/city-vienna.jpg", slug: "warsaw-vienna" },
+    { city: t.routes.budapest, country: t.routes.hungary, code: "BUD", distance: "690 km", image: "/images/city-budapest.jpg", slug: "warsaw-budapest" },
   ]
 
   return (
@@ -64,7 +61,7 @@ export function Routes() {
               className="group relative h-[260px] overflow-hidden cursor-pointer sm:h-[340px] lg:h-[480px]"
             onMouseEnter={() => setHoveredIndex(0)}
             onMouseLeave={() => setHoveredIndex(null)}
-            onClick={() => handleRouteClick(routes[0].city)}
+            onClick={() => handleRouteClick(routes[0].slug)}
           >
             <Image
               src={routes[0].image}
@@ -133,7 +130,7 @@ export function Routes() {
               style={{ transitionDelay: `${400 + i * 100}ms` }}
               onMouseEnter={() => setHoveredIndex(i + 1)}
               onMouseLeave={() => setHoveredIndex(null)}
-              onClick={() => handleRouteClick(route.city)}
+              onClick={() => handleRouteClick(route.slug)}
             >
               <Image
                 src={route.image}

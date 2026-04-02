@@ -1,8 +1,15 @@
 "use client"
 
+import Link from "next/link"
 import { useTranslation } from "@/lib/language-context"
 import { useBooking } from "@/lib/booking-context"
 import { MoviLogo } from "@/components/logo"
+
+/** Convert city names to a route slug, e.g. ("Kraków","Vienna") → "krakow-vienna" */
+function toSlug(from: string, to: string): string {
+  const norm = (s: string) => s.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/ł/g, "l").replace(/Ł/g, "L").toLowerCase().replace(/[^a-z]/g, "")
+  return `${norm(from)}-${norm(to)}`
+}
 
 const ALL_ROUTES = [
   // Warsaw
@@ -180,14 +187,13 @@ export function Footer() {
               <ul key={colIdx} className="flex flex-col">
                 {col.map((route) => (
                   <li key={route.label} className="border-b border-border/10 last:border-b-0">
-                    <button
-                      type="button"
-                      onClick={() => handleRouteClick(route.from, route.to)}
-                      className="flex w-full items-center justify-between py-2.5 text-sm font-light text-muted-foreground transition-colors hover:text-foreground group cursor-pointer"
+                    <Link
+                      href={`/routes/${toSlug(route.from, route.to)}`}
+                      className="flex w-full items-center justify-between py-2.5 text-sm font-light text-muted-foreground transition-colors hover:text-foreground group"
                     >
                       <span>{route.label}</span>
                       <span className="text-border/30 group-hover:text-silver/50 transition-colors text-xs">&rarr;</span>
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>
