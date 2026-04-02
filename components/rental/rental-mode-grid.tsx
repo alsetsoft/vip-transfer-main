@@ -19,7 +19,7 @@ const MODES = [
     title: "With Driver",
     subtitle: "Comfort & Reliability",
     description:
-      "Door-to-door private transfers across Ukraine and Europe. Your professional chauffeur handles routing, border crossings, and waiting time.",
+      "Door-to-door private transfers across Europe. Your professional chauffeur handles routing and waiting time.",
     bullets: ["Door-to-door pickup", "Border fast-track", "Fixed price, no surprises", "Comfort, Business & Premium"],
   },
   {

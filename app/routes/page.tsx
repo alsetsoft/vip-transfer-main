@@ -12,18 +12,18 @@ import { UniversalBookingForm } from '@/components/universal-booking-form'
 
 const ROUTES = [
   {
-    id: 'kyiv',
-    cityKey: 'kyiv' as const,
-    countryKey: 'ukraine' as const,
-    code: 'KBP',
-    image: '/images/city-kyiv.jpg',
-    distance: '780 km',
-    duration: '~8–9 h',
-    connections: ['Warsaw', 'Berlin', 'Prague'],
+    id: 'zurich',
+    cityKey: 'zurich' as const,
+    countryKey: 'switzerland' as const,
+    code: 'ZRH',
+    image: '/images/city-zurich.jpg',
+    distance: '1 080 km',
+    duration: '~10–11 h',
+    connections: ['Warsaw', 'Berlin', 'Vienna'],
     index: '01',
-    border: 'Medyka–Shehyni',
-    borderType: 'Road — EU Schengen',
-    highlights: ['Direct highway A4', 'No city traffic', 'Comfort stops every 2–3 h'],
+    border: 'Basel–Weil am Rhein',
+    borderType: 'Road — Schengen Associated',
+    highlights: ['Via Autobahn A5 & A3', 'Scenic Alpine approach', 'Comfort stops every 2–3 h'],
   },
   {
     id: 'berlin',
@@ -94,88 +94,6 @@ export default function RoutesPage() {
     if (el) el.scrollIntoView({ behavior: "smooth" })
   }
 
-  const BORDER_CROSSINGS = [
-    {
-      name: 'Medyka–Shehyni',
-      countries: t.routesPage.bcCountries1,
-      type: 'Road',
-      hours: '24 / 7',
-      lanes: t.routesPage.bcLanes1,
-      note: t.routesPage.bcNote1,
-      flag: '🇵🇱↔🇺🇦',
-      schengen: false,
-    },
-    {
-      name: 'Dorohusk–Jagodyn',
-      countries: t.routesPage.bcCountries1,
-      type: 'Road + Rail',
-      hours: '24 / 7',
-      lanes: t.routesPage.bcLanes2,
-      note: t.routesPage.bcNote2,
-      flag: '🇵🇱↔🇺🇦',
-      schengen: false,
-    },
-    {
-      name: 'Korczowa–Krakovets',
-      countries: t.routesPage.bcCountries1,
-      type: 'Road',
-      hours: '24 / 7',
-      lanes: t.routesPage.bcLanes2,
-      note: t.routesPage.bcNote3,
-      flag: '🇵🇱↔🇺🇦',
-      schengen: false,
-    },
-    {
-      name: 'Hrebenne–Rava-Ruska',
-      countries: t.routesPage.bcCountries1,
-      type: 'Road',
-      hours: '24 / 7',
-      lanes: t.routesPage.bcLanes1,
-      note: t.routesPage.bcNote4,
-      flag: '🇵🇱↔🇺🇦',
-      schengen: false,
-    },
-    {
-      name: 'Świecko–Frankfurt (Oder)',
-      countries: t.routesPage.bcCountries2,
-      type: 'Road (A2)',
-      hours: '24 / 7',
-      lanes: t.routesPage.bcLanes3,
-      note: t.routesPage.bcNote5,
-      flag: '🇵🇱↔🇩🇪',
-      schengen: true,
-    },
-    {
-      name: 'Kudowa-Zdrój–Náchod',
-      countries: t.routesPage.bcCountries3,
-      type: 'Road',
-      hours: '24 / 7',
-      lanes: t.routesPage.bcLanes3,
-      note: t.routesPage.bcNote6,
-      flag: '🇵🇱↔🇨🇿',
-      schengen: true,
-    },
-    {
-      name: 'Cieszyn–Český Těšín',
-      countries: t.routesPage.bcCountries3,
-      type: 'Road',
-      hours: '24 / 7',
-      lanes: t.routesPage.bcLanes3,
-      note: t.routesPage.bcNote7,
-      flag: '🇵🇱↔🇨🇿',
-      schengen: true,
-    },
-    {
-      name: 'Rajka (via Slovakia)',
-      countries: t.routesPage.bcCountries4,
-      type: 'Road (M15)',
-      hours: '24 / 7',
-      lanes: t.routesPage.bcLanes3,
-      note: t.routesPage.bcNote8,
-      flag: '🇸🇰↔🇭🇺',
-      schengen: true,
-    },
-  ]
   const [hovered, setHovered] = useState<string | null>(null)
 
   return (
@@ -401,14 +319,14 @@ export default function RoutesPage() {
 
       {/* ── ROUTE DETAIL BLOCKS (comparison, benefits, FAQ) ── */}
       {/*
-        Uses Warsaw → Kyiv as the representative "featured route" since Warsaw
+        Uses Warsaw → Berlin as the representative "featured route" since Warsaw
         is the hub city shown in the hero. Each route's origin/destination and
         distance is pulled from the ROUTES array for the first destination.
       */}
       <RouteDetailBlocks
         origin="Warsaw"
-        destination="Kyiv"
-        distanceKm={780}
+        destination="Berlin"
+        distanceKm={570}
       />
 
       {/* ── WHAT TO EXPECT CARDS ───────────────────────── */}
@@ -450,80 +368,6 @@ export default function RoutesPage() {
               <p className="text-xs font-light leading-relaxed text-muted-foreground">{item.desc}</p>
             </div>
           ))}
-        </div>
-      </section>
-
-      {/* ── BORDER CROSSINGS ───────────────────────────── */}
-      <section className="mx-auto max-w-7xl px-4 py-16 sm:px-8 lg:px-16">
-        <div className="flex items-center gap-4 mb-12">
-          <span className="text-[10px] font-light tracking-[0.4em] text-hint uppercase shrink-0">
-            {t.routesPage.borderCheckpoints}
-          </span>
-          <span className="h-px flex-1 bg-border/20" />
-          <span className="text-[10px] font-light tracking-[0.4em] text-faint uppercase shrink-0">
-            {BORDER_CROSSINGS.length} {t.routesPage.crossings}
-          </span>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-border/10">
-          {BORDER_CROSSINGS.map((bc) => (
-            <div
-              key={bc.name}
-              className="bg-background p-6 sm:p-8 flex flex-col gap-3 group hover:bg-card/40 transition-colors duration-300"
-            >
-              {/* Header */}
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <p className="text-base font-light text-foreground tracking-wide">{bc.name}</p>
-                  <p className="text-[11px] font-light tracking-[0.2em] text-hint uppercase mt-0.5">
-                    {bc.countries}
-                  </p>
-                </div>
-                <span
-                  className={`shrink-0 mt-0.5 px-2 py-0.5 text-[9px] font-light tracking-[0.25em] uppercase border ${
-                    bc.schengen
-                      ? 'border-emerald-800/40 text-emerald-500/70'
-                      : 'border-amber-800/40 text-amber-400/70'
-                  }`}
-                >
-                  {bc.schengen ? t.routesPage.schengenBadge : t.routesPage.extBorderBadge}
-                </span>
-              </div>
-
-              {/* Meta row */}
-              <div className="flex flex-wrap gap-x-6 gap-y-1">
-                <span className="flex items-center gap-1.5 text-xs font-light text-muted-foreground">
-                  <RouteIcon className="h-3 w-3" />
-                  {bc.type}
-                </span>
-                <span className="flex items-center gap-1.5 text-xs font-light text-muted-foreground">
-                  <Clock className="h-3 w-3" />
-                  {bc.hours}
-                </span>
-                <span className="flex items-center gap-1.5 text-xs font-light text-muted-foreground">
-                  <Car className="h-3 w-3" />
-                  {bc.lanes}
-                </span>
-              </div>
-
-              {/* Note */}
-              <p className="text-xs font-light leading-relaxed text-muted-foreground border-t border-border/10 pt-3">
-                {bc.note}
-              </p>
-            </div>
-          ))}
-        </div>
-
-        {/* Schengen legend */}
-        <div className="mt-6 flex flex-wrap gap-6 text-[11px] font-light text-muted-foreground">
-          <span className="flex items-center gap-2">
-            <span className="inline-block w-2 h-2 rounded-sm border border-emerald-800/40 bg-emerald-950/30" />
-            {t.routesPage.schengenLegend}
-          </span>
-          <span className="flex items-center gap-2">
-            <span className="inline-block w-2 h-2 rounded-sm border border-amber-800/40 bg-amber-950/30" />
-            {t.routesPage.extBorderLegend}
-          </span>
         </div>
       </section>
 

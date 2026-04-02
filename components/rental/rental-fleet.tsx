@@ -102,7 +102,7 @@ export function RentalFleet() {
                   fill
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                   className={`object-cover object-center transition-all duration-700 ${
-                    hoveredIndex === i ? "scale-105 brightness-75" : "scale-100 brightness-[0.6]"
+                    hoveredIndex === i ? "scale-105 brightness-100" : "scale-100 brightness-90"
                   }`}
                   loading="lazy"
                 />

@@ -57,10 +57,10 @@ function FloatInput({
 
 /* ─── City Autocomplete ─────────────────────────────────── */
 const CITIES = [
-  { name: "Warsaw", country: "PL" }, { name: "Kyiv", country: "UA" },
+  { name: "Warsaw", country: "PL" },
   { name: "Berlin", country: "DE" }, { name: "Prague", country: "CZ" },
   { name: "Vienna", country: "AT" }, { name: "Budapest", country: "HU" },
-  { name: "Kraków", country: "PL" }, { name: "Lviv", country: "UA" },
+  { name: "Kraków", country: "PL" },
   { name: "Wrocław", country: "PL" }, { name: "Munich", country: "DE" },
   { name: "Bratislava", country: "SK" }, { name: "Zürich", country: "CH" },
   { name: "Amsterdam", country: "NL" }, { name: "Brussels", country: "BE" },
@@ -69,9 +69,6 @@ const CITIES = [
   { name: "Poznań", country: "PL" }, { name: "Łódź", country: "PL" },
   { name: "Katowice", country: "PL" }, { name: "Lublin", country: "PL" },
   { name: "Rzeszów", country: "PL" }, { name: "Vilnius", country: "LT" },
-  { name: "Odesa", country: "UA" }, { name: "Dnipro", country: "UA" },
-  { name: "Kharkiv", country: "UA" }, { name: "Ternopil", country: "UA" },
-  { name: "Ivano-Frankivsk", country: "UA" }, { name: "Uzhhorod", country: "UA" },
 ]
 
 function FloatCityInput({
@@ -219,7 +216,6 @@ export function RouteBookingModal({ route, onClose }: Props) {
   const [returnDate, setReturnDate] = useState("")
   const [firstName, setFirstName] = useState("")
   const [lastName, setLastName] = useState("")
-  const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
   const [passengers, setPassengers] = useState(1)
   const [paymentType, setPaymentType] = useState("cash100")
@@ -256,7 +252,6 @@ export function RouteBookingModal({ route, onClose }: Props) {
       source: "route_modal",
       first_name: firstName,
       last_name: lastName,
-      email,
       phone,
       passengers,
       route_city: city,
@@ -393,7 +388,6 @@ export function RouteBookingModal({ route, onClose }: Props) {
               <div className="grid gap-6 sm:grid-cols-2">
                 <FloatInput id="modal-first" label={t.form.firstName} required value={firstName} onChange={setFirstName} />
                 <FloatInput id="modal-last" label={t.form.lastName} required value={lastName} onChange={setLastName} />
-                <FloatInput id="modal-email" label={t.form.email} type="email" required value={email} onChange={setEmail} placeholder={t.form.emailPlaceholder} />
                 <FloatInput id="modal-phone" label={t.form.phone} type="tel" value={phone} onChange={setPhone} placeholder={t.form.phonePlaceholder} />
               </div>
             </div>

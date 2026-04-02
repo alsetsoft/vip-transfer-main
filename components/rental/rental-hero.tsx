@@ -38,8 +38,8 @@ export function RentalHero() {
           priority
           quality={85}
         />
-        <div className="absolute inset-0 bg-background/68" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
+        <div className="absolute inset-0 bg-background/25" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background/40 via-transparent to-transparent" />
       </div>
 
       {/* Content */}

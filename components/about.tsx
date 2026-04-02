@@ -17,7 +17,7 @@ export function About() {
   ]
 
   return (
-    <section id="about" ref={ref} className="relative py-20 lg:py-40 overflow-hidden">
+    <section id="about" ref={ref} className="relative py-12 lg:py-24 overflow-hidden">
       {/* Subtle background accent */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-card/20 to-background" />
 
@@ -38,7 +38,7 @@ export function About() {
                 className="object-cover"
                 quality={85}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-background/20" />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/30 via-transparent to-transparent" />
             </div>
 
             {/* Floating accent line */}

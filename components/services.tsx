@@ -79,7 +79,7 @@ export function Services() {
   return (
     <section id="services" ref={sectionRef} className="relative">
       {/* Top: Section Header + Fleet Grid */}
-      <div className="relative py-16 lg:py-32">
+      <div className="relative py-12 lg:py-24">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
           {/* Header row */}
           <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between mb-10 lg:mb-16">
@@ -155,11 +155,11 @@ export function Services() {
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
                     className={`object-cover object-center transition-all duration-700 ${
-                      hoveredIndex === i ? "scale-105 brightness-75" : "scale-100 brightness-[0.6]"
+                      hoveredIndex === i ? "scale-105 brightness-100" : "scale-100 brightness-90"
                     }`}
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
                   {/* Pax badge */}
                   <div className="absolute top-3 right-3 flex items-center gap-1.5 border border-white/20 bg-black/40 px-2.5 py-1 backdrop-blur-sm">
@@ -213,7 +213,7 @@ export function Services() {
                     loading="lazy"
                     className="object-cover brightness-[0.7] contrast-[1.08] transition-all duration-700 group-hover:brightness-[0.85] group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-transparent to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
                   <span className="absolute top-4 left-5 text-7xl font-extralight leading-none tracking-tight text-white/70 select-none drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">
                     {service.num}
                   </span>

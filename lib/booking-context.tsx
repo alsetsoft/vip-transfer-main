@@ -11,7 +11,6 @@ export type VehicleClass = "comfort" | "business" | "premium"
 export interface ChauffeurFields {
   firstName: string
   lastName: string
-  email: string
   phone: string
   originCity: string
   originCountry: string
@@ -46,7 +45,6 @@ interface BookingContextType {
 const defaultChauffeur: ChauffeurFields = {
   firstName: "",
   lastName: "",
-  email: "",
   phone: "",
   originCity: "",
   originCountry: "",

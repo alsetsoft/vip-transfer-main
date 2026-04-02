@@ -43,7 +43,7 @@ export function BorderCrossing() {
   ]
 
   return (
-    <section ref={ref} className="relative py-20 lg:py-40 bg-background overflow-hidden">
+    <section ref={ref} className="relative py-12 lg:py-24 bg-background overflow-hidden">
       {/* Background accent line */}
       <div className="absolute left-1/2 top-0 h-full w-px bg-gradient-to-b from-transparent via-border/40 to-transparent -translate-x-1/2 hidden lg:block" />
 

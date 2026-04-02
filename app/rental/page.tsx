@@ -15,7 +15,7 @@ const Footer = dynamic(() => import("@/components/footer").then(m => ({ default:
 export const metadata: Metadata = {
   title: "Car Rental & Transfers | Movi Transfer",
   description:
-    "Premium car rental and private transfers across Ukraine and Europe. Self-drive, with driver, or hourly hire — Comfort, Business and Premium fleet available.",
+    "Premium car rental and private transfers across Europe. Self-drive, with driver, or hourly hire — Comfort, Business and Premium fleet available.",
 }
 
 export default function RentalPage() {

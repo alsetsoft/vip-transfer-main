@@ -5,16 +5,15 @@ export function StructuredData() {
     "@id": "https://movitransfer.eu/#business",
     name: "Movi Transfer",
     description:
-      "Premium private international transfer between Ukraine and Europe. Business-class door-to-door chauffeur service with Mercedes-Benz fleet for 1-4 passengers.",
+      "Premium private international transfer across Europe. Business-class door-to-door chauffeur service with Mercedes-Benz fleet for 1-4 passengers.",
     url: "https://movitransfer.eu",
-    telephone: "+380-XX-XXX-XXXX",
+    telephone: "+49-30-1234-5678",
     email: "reservations@movitransfer.eu",
     image: "https://movitransfer.eu/images/hero-sedan.jpg",
     priceRange: "$$$",
-    currenciesAccepted: "EUR, UAH, PLN, USD",
+    currenciesAccepted: "EUR, CHF, PLN, USD",
     paymentAccepted: "Cash, Credit Card, Bank Transfer, PayPal",
     areaServed: [
-      { "@type": "Country", name: "Ukraine" },
       { "@type": "Country", name: "Poland" },
       { "@type": "Country", name: "Germany" },
       { "@type": "Country", name: "Czech Republic" },
@@ -56,14 +55,13 @@ export function StructuredData() {
     "@id": "https://movitransfer.eu/#service",
     name: "Private International Chauffeur Transfer",
     description:
-      "Premium door-to-door private transfer service between Ukraine and European countries. Business-class Mercedes-Benz vehicles, professional multilingual drivers, VIP border crossing assistance.",
+      "Premium door-to-door private transfer service across European countries. Business-class Mercedes-Benz vehicles, professional multilingual drivers, 24/7 concierge support.",
     provider: {
       "@type": "LocalBusiness",
       name: "Movi Transfer",
     },
     serviceType: "Private Chauffeur Transfer",
     areaServed: [
-      { "@type": "Country", name: "Ukraine" },
       { "@type": "Country", name: "Poland" },
       { "@type": "Country", name: "Germany" },
       { "@type": "Country", name: "Czech Republic" },
@@ -87,9 +85,9 @@ export function StructuredData() {
           "@type": "Offer",
           itemOffered: {
             "@type": "Service",
-            name: "VIP Border Crossing Assistance",
+            name: "24/7 Travel Concierge",
             description:
-              "Full document preparation, priority lane approach, checkpoint assistance, customs support, and seamless continuation.",
+              "Full document preparation, route planning, checkpoint coordination, travel support, and seamless door-to-door service.",
           },
         },
         {
@@ -126,7 +124,7 @@ export function StructuredData() {
           bestRating: "5",
         },
         reviewBody:
-          "Exceptional service from Kyiv to Warsaw. The driver was punctual, professional, and the S-Class made a 10-hour journey feel effortless.",
+          "Exceptional service from Warsaw to Berlin. The driver was punctual, professional, and the S-Class made a 10-hour journey feel effortless.",
       },
       {
         "@type": "Review",
@@ -137,7 +135,7 @@ export function StructuredData() {
           bestRating: "5",
         },
         reviewBody:
-          "As someone who travels between Lviv and Milan regularly, comfort and reliability are non-negotiable. Movi Transfer exceeds expectations every single time.",
+          "As someone who travels between Warsaw and Milan regularly, comfort and reliability are non-negotiable. Movi Transfer exceeds expectations every single time.",
       },
       {
         "@type": "Review",
@@ -148,7 +146,7 @@ export function StructuredData() {
           bestRating: "5",
         },
         reviewBody:
-          "The border crossing assistance alone is worth every penny. Our team of six traveled from Odesa to Vienna with zero stress.",
+          "The concierge service alone is worth every penny. Our team of six traveled from Kraków to Vienna with zero stress.",
       },
     ],
   }
@@ -159,10 +157,10 @@ export function StructuredData() {
     mainEntity: [
       {
         "@type": "Question",
-        name: "How does private border crossing work with a luxury transfer?",
+        name: "How does international private transfer work?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Our experienced drivers handle all border crossing procedures. We assist with document preparation, use priority lanes where available, communicate with border officers in local languages, provide customs and declaration support, and ensure seamless continuation of your journey. Average crossing time is 15 minutes.",
+          text: "Our experienced drivers handle your entire journey across Europe. We assist with route planning, provide multilingual communication throughout, coordinate all logistics, and ensure seamless door-to-door delivery. Our concierge team is available 24/7 to support every step of your trip.",
         },
       },
       {
@@ -170,7 +168,7 @@ export function StructuredData() {
         name: "What countries do private international transfers operate in?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Movi Transfer operates across all EU countries and partner states including Ukraine, Poland, Germany, Czech Republic, Austria, Hungary, Slovakia, Switzerland, and the United Kingdom. Custom routes to any European destination can be arranged upon request.",
+          text: "Movi Transfer operates across all EU countries and partner states including Poland, Germany, Czech Republic, Austria, Hungary, Slovakia, Switzerland, and the United Kingdom. Custom routes to any European destination can be arranged upon request.",
         },
       },
       {
@@ -191,10 +189,10 @@ export function StructuredData() {
       },
       {
         "@type": "Question",
-        name: "How much does a private transfer from Ukraine to Europe cost?",
+        name: "How much does a private transfer across Europe cost?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Pricing depends on the route, vehicle chosen, and number of passengers. We provide personalized quotes within 2 hours of your booking request. Our service includes door-to-door delivery, border crossing assistance, refreshments, and Wi-Fi -- all included in the quoted price with no hidden fees.",
+          text: "Pricing depends on the route, vehicle chosen, and number of passengers. We provide personalized quotes within 2 hours of your booking request. Our service includes door-to-door delivery, concierge support, refreshments, and Wi-Fi -- all included in the quoted price with no hidden fees.",
         },
       },
       {
@@ -210,7 +208,7 @@ export function StructuredData() {
         name: "Are the drivers multilingual?",
         acceptedAnswer: {
           "@type": "Answer",
-          text: "Yes, all our chauffeurs speak a minimum of three languages. Most are fluent in English, Polish, German, and Ukrainian. Drivers with French, Italian, or other language proficiency can be arranged upon request.",
+          text: "Yes, all our chauffeurs speak a minimum of three languages. Most are fluent in English, Polish, and German. Drivers with French, Italian, or other language proficiency can be arranged upon request.",
         },
       },
       {

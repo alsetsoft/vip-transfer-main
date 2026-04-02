@@ -11,7 +11,6 @@ import { submitBooking } from "@/app/actions/booking"
 
 /* ─── Constants ──────────────────────────────────────────── */
 const COUNTRIES: { name: string; flag: string; code: string }[] = [
-  { name: "Ukraine",        flag: "🇺🇦", code: "UA" },
   { name: "Poland",         flag: "🇵🇱", code: "PL" },
   { name: "Germany",        flag: "🇩🇪", code: "DE" },
   { name: "Czech Republic", flag: "🇨🇿", code: "CZ" },
@@ -27,13 +26,11 @@ const COUNTRIES: { name: string; flag: string; code: string }[] = [
 
 const CITIES = [
   { name: "Warsaw", country: "PL" },
-  { name: "Kyiv", country: "UA" },
   { name: "Berlin", country: "DE" },
   { name: "Prague", country: "CZ" },
   { name: "Vienna", country: "AT" },
   { name: "Budapest", country: "HU" },
   { name: "Kraków", country: "PL" },
-  { name: "Lviv", country: "UA" },
   { name: "Wrocław", country: "PL" },
   { name: "Munich", country: "DE" },
   { name: "Bratislava", country: "SK" },
@@ -50,16 +47,7 @@ const CITIES = [
   { name: "Lublin", country: "PL" },
   { name: "Rzeszów", country: "PL" },
   { name: "Vilnius", country: "LT" },
-  { name: "Odesa", country: "UA" },
-  { name: "Dnipro", country: "UA" },
-  { name: "Kharkiv", country: "UA" },
-  { name: "Ternopil", country: "UA" },
-  { name: "Ivano-Frankivsk", country: "UA" },
-  { name: "Uzhhorod", country: "UA" },
 ]
-
-const CYRILLIC_RE = /[\u0400-\u04FF]/
-const EMAIL_RE    = /^[^\u0400-\u04FF\s@]+@[^\u0400-\u04FF\s@]+\.[^\u0400-\u04FF\s@]{2,}$/
 
 /* ─── Floating Input ─────────────────────────────────────── */
 function FloatInput({
@@ -68,19 +56,9 @@ function FloatInput({
   id: string; label: string; type?: string; placeholder?: string
   required?: boolean; value: string; onChange: (v: string) => void
 }) {
-  const { t } = useTranslation()
   const safeValue = value ?? ""
   const [focused, setFocused] = useState(false)
   const active = focused || safeValue.length > 0
-  const [touched, setTouched] = useState(false)
-
-  const emailError = type === "email" && touched && safeValue.length > 0
-    ? CYRILLIC_RE.test(safeValue)
-      ? t.form.noCyrillic
-      : !EMAIL_RE.test(safeValue)
-      ? t.form.invalidEmail
-      : null
-    : null
 
   return (
     <div className="relative flex flex-col">
@@ -95,18 +73,17 @@ function FloatInput({
       </label>
       <input
         id={id}
-        type={type === "email" ? "text" : type}
+        type={type}
         required={required}
         value={safeValue}
         autoComplete="off"
         onChange={e => onChange(e.target.value)}
         onFocus={() => setFocused(true)}
-        onBlur={() => { setFocused(false); setTouched(true) }}
+        onBlur={() => setFocused(false)}
         placeholder={active ? (placeholder ?? "") : ""}
         className="mt-5 border-b bg-transparent pb-3 text-sm font-light text-foreground outline-none transition-colors duration-300 placeholder:text-[var(--text-dim)]"
-        style={{ borderBottomColor: emailError ? "oklch(0.55 0.2 25)" : focused ? "var(--line-focus)" : "var(--line-dim)" }}
+        style={{ borderBottomColor: focused ? "var(--line-focus)" : "var(--line-dim)" }}
       />
-      {emailError && <p className="mt-1.5 text-[11px] font-light text-red-400/80">{emailError}</p>}
     </div>
   )
 }
@@ -430,7 +407,6 @@ export function UniversalBookingForm({ className, compact = false, lockedMode }:
         source: "main_form",
         first_name: chauffeur.firstName,
         last_name: chauffeur.lastName,
-        email: chauffeur.email,
         phone: chauffeur.phone,
         origin_city: chauffeur.originCity,
         origin_country: chauffeur.originCountry,
@@ -502,11 +478,8 @@ export function UniversalBookingForm({ className, compact = false, lockedMode }:
             <FloatInput id="lastName"  label={t.form.lastName}  required value={chauffeur.lastName}  onChange={v => setChauffeur({ lastName: v })} />
           </div>
 
-          {/* Contact row */}
-          <div className="grid grid-cols-1 gap-7 sm:grid-cols-2">
-            <FloatInput id="email" label={t.form.emailAddress} type="email" required value={chauffeur.email} onChange={v => setChauffeur({ email: v })} />
-            <FloatInput id="phone" label={t.form.phoneNumber}  type="tel"   required value={chauffeur.phone} onChange={v => setChauffeur({ phone: v })} />
-          </div>
+          {/* Phone */}
+          <FloatInput id="phone" label={t.form.phoneNumber} type="tel" required value={chauffeur.phone} onChange={v => setChauffeur({ phone: v })} />
 
           {/* Origin row: city + country */}
           <div className="grid grid-cols-1 gap-7 sm:grid-cols-2">

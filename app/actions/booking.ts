@@ -6,7 +6,7 @@ export type BookingPayload = {
   source: "main_form" | "route_modal"
   first_name: string
   last_name: string
-  email: string
+  email?: string
   phone?: string
   origin_city?: string
   origin_country?: string

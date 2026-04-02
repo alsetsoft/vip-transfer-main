@@ -40,8 +40,8 @@ export function Hero() {
           quality={85}
           fetchPriority="high"
         />
-        <div className="absolute inset-0 bg-black/55" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-black/20" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
       </div>
 
       {/* Content */}
@@ -68,7 +68,7 @@ export function Hero() {
 
         {/* SEO: H1 keywords mirrored verbatim in body text for crawlers */}
         <p className="sr-only">
-          Seamless International Mobility: Private Chauffeur Services — Movi Transfer offers premium, cross-border business-class transport between Ukraine and Europe. Experience flawless international travel with our dedicated chauffeur service, designed exclusively for individuals and small groups.
+          Seamless International Mobility: Private Chauffeur Services — Movi Transfer offers premium business-class transport across Europe. Experience flawless international travel with our dedicated chauffeur service, designed exclusively for individuals and small groups.
         </p>
 
         <p

@@ -4,16 +4,14 @@ import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import { ArrowRight } from "lucide-react"
 
 const DESTINATIONS = [
-  { from: "Kyiv",    to: "Warsaw",    km: "840 km",  time: "~9 h"  },
-  { from: "Kyiv",    to: "Berlin",    km: "1 320 km",time: "~14 h" },
-  { from: "Lviv",    to: "Krakow",    km: "310 km",  time: "~4 h"  },
-  { from: "Lviv",    to: "Vienna",    km: "720 km",  time: "~8 h"  },
-  { from: "Odesa",   to: "Chisinau",  km: "190 km",  time: "~2.5 h"},
+  { from: "Warsaw",  to: "Berlin",    km: "570 km",  time: "~6 h"  },
   { from: "Warsaw",  to: "Prague",    km: "680 km",  time: "~7 h"  },
+  { from: "Krak\u00f3w",  to: "Vienna",    km: "460 km",  time: "~5 h"  },
+  { from: "Krak\u00f3w",  to: "Budapest",  km: "380 km",  time: "~4.5 h"},
+  { from: "Berlin",  to: "Amsterdam", km: "650 km",  time: "~7 h"  },
   { from: "Warsaw",  to: "Budapest",  km: "850 km",  time: "~9 h"  },
   { from: "Warsaw",  to: "Vienna",    km: "730 km",  time: "~7.5 h"},
-  { from: "Krakow",  to: "Bratislava",km: "420 km",  time: "~4.5 h"},
-  { from: "Krakow",  to: "Budapest",  km: "540 km",  time: "~5.5 h"},
+  { from: "Krak\u00f3w",  to: "Bratislava",km: "420 km",  time: "~4.5 h"},
   { from: "Prague",  to: "Vienna",    km: "330 km",  time: "~3.5 h"},
   { from: "Prague",  to: "Berlin",    km: "355 km",  time: "~4 h"  },
 ]

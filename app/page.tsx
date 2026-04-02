@@ -7,7 +7,6 @@ import { Services } from "@/components/services"
 import { Routes } from "@/components/routes"
 
 const Trust = dynamic(() => import("@/components/trust").then(m => ({ default: m.Trust })))
-const BorderCrossing = dynamic(() => import("@/components/border-crossing").then(m => ({ default: m.BorderCrossing })))
 const Reviews = dynamic(() => import("@/components/reviews").then(m => ({ default: m.Reviews })))
 const FAQ = dynamic(() => import("@/components/faq").then(m => ({ default: m.FAQ })))
 const Booking = dynamic(() => import("@/components/booking").then(m => ({ default: m.Booking })))
@@ -23,7 +22,6 @@ export default function Page() {
       <Services />
       <Routes />
       <Trust />
-      <BorderCrossing />
       <Reviews />
       <FAQ />
       <Booking />

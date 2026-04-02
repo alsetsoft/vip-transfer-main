@@ -4,31 +4,30 @@ import { Analytics } from '@vercel/analytics/next'
 import { LanguageProvider } from '@/lib/language-context'
 import { BookingProvider } from '@/lib/booking-context'
 import { ThemeProvider } from '@/lib/theme-context'
+import { CookieBanner } from '@/components/cookie-banner'
 import './globals.css'
 
 const _inter = Inter({ subsets: ["latin"], display: "swap", preload: true });
 
 export const metadata: Metadata = {
   title: {
-    default: 'Movi Transfer — Private Chauffeur Ukraine to Europe',
+    default: 'Movi Transfer — Private Chauffeur Service Across Europe',
     template: '%s | Movi Transfer',
   },
-  description: 'Private door-to-door chauffeur Ukraine to Europe. Mercedes-Benz fleet, VIP border crossing, 24/7 concierge support. Kyiv, Lviv to Poland, Germany, Austria.',
+  description: 'Private door-to-door chauffeur service across Europe. Mercedes-Benz fleet, 24/7 concierge support. Warsaw, Berlin, Vienna, Prague and beyond.',
   keywords: [
-    'private transfer Ukraine to Europe',
-    'private chauffeur Ukraine Poland',
-    'transfer Kyiv Warsaw',
-    'transfer Lviv Berlin',
-    'transfer Ukraine Germany',
+    'private chauffeur service Europe',
+    'private transfer Poland Germany',
+    'transfer Warsaw Berlin',
+    'transfer Kraków Vienna',
     'door-to-door international transfer',
-    'VIP border crossing Ukraine EU',
     'business class chauffeur service',
     'Mercedes-Benz private transfer Europe',
-    'cross-border taxi Ukraine',
-    'luxury private transport Ukraine',
+    'luxury private transport Europe',
     'international chauffeur service',
     '24/7 concierge transfer',
-    'premium transfer from Ukraine',
+    'premium transfer service Europe',
+    'private car service Poland',
   ],
   generator: 'v0.app',
   authors: [{ name: 'Movi Transfer', url: 'https://movitransfer.eu' }],
@@ -37,17 +36,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    alternateLocale: ['uk_UA', 'pl_PL', 'ru_RU'],
-    title: 'Movi Transfer — Private Chauffeur Ukraine to Europe',
-    description: 'Private door-to-door chauffeur service from Ukraine to Poland, Germany, Austria, Czech Republic and beyond. Mercedes-Benz fleet, VIP border crossing, 24/7 concierge.',
+    alternateLocale: ['pl_PL'],
+    title: 'Movi Transfer — Private Chauffeur Service Across Europe',
+    description: 'Private door-to-door chauffeur service across Poland, Germany, Austria, Czech Republic and beyond. Mercedes-Benz fleet, 24/7 concierge.',
     siteName: 'Movi Transfer',
     url: 'https://movitransfer.eu',
-    images: [{ url: '/images/hero-sedan.jpg', width: 1200, height: 630, alt: 'Movi Transfer — Private Mercedes-Benz chauffeur service Ukraine to Europe' }],
+    images: [{ url: '/images/hero-sedan.jpg', width: 1200, height: 630, alt: 'Movi Transfer — Private Mercedes-Benz chauffeur service across Europe' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Movi Transfer — Private Chauffeur Ukraine to Europe',
-    description: 'Private door-to-door chauffeur from Ukraine to Poland, Germany, Austria and beyond. Mercedes fleet, VIP border crossing, 24/7 concierge.',
+    title: 'Movi Transfer — Private Chauffeur Service Across Europe',
+    description: 'Private door-to-door chauffeur across Poland, Germany, Austria and beyond. Mercedes fleet, 24/7 concierge.',
     images: ['/images/hero-sedan.jpg'],
   },
   robots: {
@@ -98,27 +97,26 @@ const jsonLd = {
       sameAs: [],
       contactPoint: {
         '@type': 'ContactPoint',
-        telephone: '+380671234567',
+        telephone: '+48301234567',
         contactType: 'customer service',
-        areaServed: ['UA', 'PL', 'DE', 'AT', 'CZ'],
-        availableLanguage: ['English', 'Ukrainian', 'Polish', 'Russian'],
+        areaServed: ['PL', 'DE', 'AT', 'CZ'],
+        availableLanguage: ['English', 'Polish', 'German'],
       },
     },
     {
       '@type': 'LocalBusiness',
       '@id': 'https://movitransfer.eu/#localbusiness',
       name: 'Movi Transfer',
-      description: 'Private door-to-door chauffeur service from Ukraine to Europe. Mercedes-Benz fleet, VIP border crossing, 24/7 concierge support.',
+      description: 'Private door-to-door chauffeur service across Europe. Mercedes-Benz fleet, 24/7 concierge support.',
       url: 'https://movitransfer.eu',
       telephone: '+48000000000',
       priceRange: '€€€',
       image: 'https://grandvoyagetransfers.eu/images/hero-sedan.jpg',
       address: {
         '@type': 'PostalAddress',
-        addressCountry: 'UA',
+        addressCountry: 'PL',
       },
       areaServed: [
-        { '@type': 'Country', name: 'Ukraine' },
         { '@type': 'Country', name: 'Poland' },
         { '@type': 'Country', name: 'Germany' },
         { '@type': 'Country', name: 'Austria' },
@@ -160,6 +158,7 @@ export default function RootLayout({
           <LanguageProvider>
             <BookingProvider>
               {children}
+              <CookieBanner />
             </BookingProvider>
           </LanguageProvider>
         </ThemeProvider>

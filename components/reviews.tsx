@@ -53,7 +53,7 @@ export function Reviews() {
   ]
 
   return (
-    <section id="reviews" ref={ref} className="relative py-20 lg:py-40">
+    <section id="reviews" ref={ref} className="relative py-12 lg:py-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
         {/* Header */}
         <div

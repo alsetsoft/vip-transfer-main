@@ -24,13 +24,13 @@ export function Routes() {
     { city: t.routes.warsaw, country: t.routes.poland, code: "WAW", distance: t.routes.hub, image: "/images/city-warsaw.jpg" },
     { city: t.routes.berlin, country: t.routes.germany, code: "BER", distance: "570 km", image: "/images/city-berlin.jpg" },
     { city: t.routes.prague, country: t.routes.czech, code: "PRG", distance: "630 km", image: "/images/city-prague.jpg" },
-    { city: t.routes.kyiv, country: t.routes.ukraine, code: "KBP", distance: "780 km", image: "/images/city-kyiv.jpg" },
+    { city: t.routes.zurich, country: t.routes.switzerland, code: "ZRH", distance: "840 km", image: "/images/city-zurich.jpg" },
     { city: t.routes.vienna, country: t.routes.austria, code: "VIE", distance: "680 km", image: "/images/city-vienna.jpg" },
     { city: t.routes.budapest, country: t.routes.hungary, code: "BUD", distance: "690 km", image: "/images/city-budapest.jpg" },
   ]
 
   return (
-    <section id="routes" ref={ref} className="relative py-20 lg:py-40 overflow-hidden">
+    <section id="routes" ref={ref} className="relative py-12 lg:py-24 overflow-hidden">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
         {/* Header */}
         <div
@@ -72,7 +72,7 @@ export function Routes() {
               fill
               sizes="100vw"
               className={`object-cover transition-all duration-700 ${
-                hoveredIndex === 0 ? "scale-105 brightness-50" : "scale-100 brightness-[0.35]"
+                hoveredIndex === 0 ? "scale-105 brightness-90" : "scale-100 brightness-75"
               }`}
               priority
             />
@@ -142,7 +142,7 @@ export function Routes() {
                 sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 20vw"
                 loading="lazy"
                 className={`object-cover transition-all duration-700 ${
-                  hoveredIndex === i + 1 ? "scale-110 brightness-[0.45]" : "scale-100 brightness-[0.3]"
+                  hoveredIndex === i + 1 ? "scale-110 brightness-90" : "scale-100 brightness-75"
                 }`}
               />
               {/* Overlay — always white text on dark image */}

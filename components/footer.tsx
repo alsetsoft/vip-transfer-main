@@ -73,7 +73,7 @@ export function Footer() {
   ]
 
   return (
-    <footer className="border-t border-border/30 bg-card/20 py-12 lg:py-16">
+    <footer className="border-t border-border/30 bg-card/20 py-10 lg:py-14">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-12">
 
         {/* Top grid: brand + services + contact */}
