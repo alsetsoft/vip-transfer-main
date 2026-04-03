@@ -10,6 +10,7 @@ import './globals.css'
 const _inter = Inter({ subsets: ["latin"], display: "swap", preload: true });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://movitransfer.eu'),
   title: {
     default: 'Movi Transfer — Private Chauffeur Service Across Europe',
     template: '%s | Movi Transfer',

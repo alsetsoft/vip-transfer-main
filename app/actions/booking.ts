@@ -1,7 +1,5 @@
 "use server"
 
-import { createClient } from "@/lib/supabase/server"
-
 export type BookingPayload = {
   source: "main_form" | "route_modal"
   first_name: string
@@ -25,14 +23,6 @@ export type BookingPayload = {
 }
 
 export async function submitBooking(payload: BookingPayload) {
-  const supabase = await createClient()
-
-  const { error } = await supabase.from("bookings").insert([payload])
-
-  if (error) {
-    console.error("[v0] Supabase insert error:", error.message)
-    return { success: false, error: error.message }
-  }
-
+  console.log("[booking]", payload)
   return { success: true }
 }
