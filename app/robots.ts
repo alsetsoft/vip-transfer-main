@@ -6,9 +6,9 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: '*',
         allow: '/',
-        disallow: [],
+        disallow: ['/admin/'],
       },
     ],
-    sitemap: 'https://grandvoyagetransfers.eu/sitemap.xml',
+    sitemap: 'https://movitransfer.eu/sitemap.xml',
   }
 }

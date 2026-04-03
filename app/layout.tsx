@@ -112,7 +112,7 @@ const jsonLd = {
       url: 'https://movitransfer.eu',
       telephone: '+48000000000',
       priceRange: '€€€',
-      image: 'https://grandvoyagetransfers.eu/images/hero-sedan.jpg',
+      image: 'https://movitransfer.eu/images/hero-sedan.jpg',
       address: {
         '@type': 'PostalAddress',
         addressCountry: 'PL',
@@ -135,7 +135,7 @@ const jsonLd = {
       '@id': 'https://movitransfer.eu/#website',
       url: 'https://movitransfer.eu',
       name: 'Movi Transfer',
-      publisher: { '@id': 'https://grandvoyagetransfers.eu/#organization' },
+      publisher: { '@id': 'https://movitransfer.eu/#organization' },
       inLanguage: ['en', 'uk', 'pl', 'ru'],
     },
   ],

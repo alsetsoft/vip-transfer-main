@@ -11,9 +11,26 @@ const Reviews = dynamic(() => import("@/components/reviews").then(m => ({ defaul
 const Footer = dynamic(() => import("@/components/footer").then(m => ({ default: m.Footer })))
 
 export const metadata: Metadata = {
-  title: "Rent with Driver | Premium Chauffeured Transfers | Movi Transfer",
+  title: "Rent with Driver | Premium Chauffeured Transfers",
   description:
     "Book a premium chauffeured transfer with a professional driver across Europe. Mercedes-Benz fleet, fixed pricing, door-to-door service — available 24/7.",
+  keywords: [
+    'rent car with driver Europe',
+    'chauffeured transfer',
+    'private driver Mercedes',
+    'professional chauffeur hire',
+    'wynajem z kierowcą',
+  ],
+  alternates: {
+    canonical: 'https://movitransfer.eu/rental/with-driver',
+  },
+  openGraph: {
+    title: 'Rent with Driver | Premium Chauffeured Transfers | Movi Transfer',
+    description: 'Book a premium chauffeured transfer with a professional driver across Europe. Mercedes-Benz fleet, fixed pricing.',
+    url: 'https://movitransfer.eu/rental/with-driver',
+    type: 'website',
+    siteName: 'Movi Transfer',
+  },
 }
 
 const FEATURES = [

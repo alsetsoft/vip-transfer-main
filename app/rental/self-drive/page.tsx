@@ -11,9 +11,26 @@ const Reviews = dynamic(() => import("@/components/reviews").then(m => ({ defaul
 const Footer = dynamic(() => import("@/components/footer").then(m => ({ default: m.Footer })))
 
 export const metadata: Metadata = {
-  title: "Self-Drive Car Rental | Elite Fleet Across Europe | Movi Transfer",
+  title: "Self-Drive Car Rental | Elite Fleet Across Europe",
   description:
     "Rent a premium Mercedes-Benz without a driver. Unlimited freedom, full insurance, flexible pick-up across Europe. Reserve your self-drive today.",
+  keywords: [
+    'self-drive car rental Europe',
+    'rent Mercedes without driver',
+    'premium car rental Poland',
+    'luxury self-drive Europe',
+    'wynajem samochodu bez kierowcy',
+  ],
+  alternates: {
+    canonical: 'https://movitransfer.eu/rental/self-drive',
+  },
+  openGraph: {
+    title: 'Self-Drive Car Rental | Elite Fleet Across Europe | Movi Transfer',
+    description: 'Rent a premium Mercedes-Benz without a driver. Full insurance, flexible pick-up across Europe.',
+    url: 'https://movitransfer.eu/rental/self-drive',
+    type: 'website',
+    siteName: 'Movi Transfer',
+  },
 }
 
 const FEATURES = [

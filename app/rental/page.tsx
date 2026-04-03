@@ -13,9 +13,27 @@ const Reviews = dynamic(() => import("@/components/reviews").then(m => ({ defaul
 const Footer = dynamic(() => import("@/components/footer").then(m => ({ default: m.Footer })))
 
 export const metadata: Metadata = {
-  title: "Car Rental & Transfers | Movi Transfer",
+  title: "Car Rental & Transfers",
   description:
     "Premium car rental and private transfers across Europe. Self-drive, with driver, or hourly hire — Comfort, Business and Premium fleet available.",
+  keywords: [
+    'car rental Europe',
+    'premium car rental',
+    'rent Mercedes-Benz',
+    'car with driver Europe',
+    'self-drive rental Poland',
+    'wynajem samochodów premium',
+  ],
+  alternates: {
+    canonical: 'https://movitransfer.eu/rental',
+  },
+  openGraph: {
+    title: 'Car Rental & Transfers | Movi Transfer',
+    description: 'Premium car rental across Europe. Self-drive or with driver — Comfort, Business and Premium fleet.',
+    url: 'https://movitransfer.eu/rental',
+    type: 'website',
+    siteName: 'Movi Transfer',
+  },
 }
 
 export default function RentalPage() {

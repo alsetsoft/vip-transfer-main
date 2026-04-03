@@ -25,7 +25,7 @@ export function StructuredData() {
     ],
     address: {
       "@type": "PostalAddress",
-      addressCountry: "UA",
+      addressCountry: "PL",
     },
     geo: {
       "@type": "GeoCoordinates",
