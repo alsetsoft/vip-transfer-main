@@ -150,8 +150,8 @@ export function Footer() {
             </h3>
             <ul className="flex flex-col gap-3">
               <li className="text-sm font-light text-muted-foreground">
-                <a href="tel:+4930123456789" className="transition-colors hover:text-foreground">
-                  +49 30 1234 5678
+                <a href="tel:+48731591155" className="transition-colors hover:text-foreground">
+                  +48 731 591 155
                 </a>
               </li>
               <li className="text-sm font-light text-muted-foreground">
