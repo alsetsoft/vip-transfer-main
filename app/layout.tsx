@@ -97,7 +97,7 @@ const jsonLd = {
       sameAs: [],
       contactPoint: {
         '@type': 'ContactPoint',
-        telephone: '+48301234567',
+        telephone: '+48731591155',
         contactType: 'customer service',
         areaServed: ['PL', 'DE', 'AT', 'CZ'],
         availableLanguage: ['English', 'Polish', 'German'],
@@ -109,7 +109,7 @@ const jsonLd = {
       name: 'Movi Transfer',
       description: 'Private door-to-door chauffeur service across Europe. Mercedes-Benz fleet, 24/7 concierge support.',
       url: 'https://movitransfer.eu',
-      telephone: '+48000000000',
+      telephone: '+48731591155',
       priceRange: '€€€',
       image: 'https://grandvoyagetransfers.eu/images/hero-sedan.jpg',
       address: {

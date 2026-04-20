@@ -347,7 +347,7 @@ export function RoutePageClient({
               <div className="mt-8 flex flex-col gap-3 border-t border-border/40 pt-6">
                 <div className="flex items-center gap-4">
                   <span className="text-[10px] font-light tracking-[0.3em] text-hint uppercase w-20">{ui.booking.phone}</span>
-                  <a href="tel:+4930123456789" className="text-sm font-light text-foreground hover:text-silver transition-colors">+49 30 1234 5678</a>
+                  <a href="tel:+48731591155" className="text-sm font-light text-foreground hover:text-silver transition-colors">+48 731 591 155</a>
                 </div>
                 <div className="flex items-center gap-4">
                   <span className="text-[10px] font-light tracking-[0.3em] text-hint uppercase w-20">Email</span>

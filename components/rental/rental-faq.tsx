@@ -38,11 +38,11 @@ export function RentalFAQ() {
               {t.rentalPage.faqDescription}
             </p>
             <a
-              href="tel:+48301234567"
+              href="tel:+48731591155"
               className="mt-8 inline-flex items-center gap-3 text-sm font-light text-silver/60 transition-colors hover:text-foreground"
             >
               <span className="h-px w-6 bg-silver/40" />
-              +49 30 1234 5678
+              +48 731 591 155
             </a>
           </div>
 

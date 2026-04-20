@@ -7,7 +7,7 @@ export function StructuredData() {
     description:
       "Premium private international transfer across Europe. Business-class door-to-door chauffeur service with Mercedes-Benz fleet for 1-4 passengers.",
     url: "https://movitransfer.eu",
-    telephone: "+49-30-1234-5678",
+    telephone: "+48-731-591-155",
     email: "reservations@movitransfer.eu",
     image: "https://movitransfer.eu/images/hero-sedan.jpg",
     priceRange: "$$$",

@@ -78,7 +78,7 @@ export default async function RoutePage({
     availableChannel: {
       "@type": "ServiceChannel",
       serviceUrl: "https://movitransfer.eu/#booking",
-      servicePhone: "+49 30 1234 5678",
+      servicePhone: "+48 731 591 155",
       availableLanguage: ["English", "Polish", "German"],
     },
     offers: {

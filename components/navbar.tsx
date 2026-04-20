@@ -167,11 +167,11 @@ export function Navbar() {
 
           {/* Phone — hidden on smaller laptops, shown on xl+ */}
           <a
-            href="tel:+4930123456789"
+            href="tel:+48731591155"
             className="hidden items-center gap-1.5 text-[10px] font-light tracking-wider text-silver transition-colors hover:text-foreground xl:flex xl:text-xs xl:gap-2"
           >
             <Phone className="h-3.5 w-3.5" />
-            <span>+49 30 1234 5678</span>
+            <span>+48 731 591 155</span>
           </a>
 
           {/* Reserve CTA */}
@@ -262,11 +262,11 @@ export function Navbar() {
           </div>
 
           <a
-            href="tel:+4930123456789"
+            href="tel:+48731591155"
             className="mt-2 flex items-center gap-2 text-sm font-light text-silver"
           >
             <Phone className="h-4 w-4" />
-            +49 30 1234 5678
+            +48 731 591 155
           </a>
         </div>
       </div>

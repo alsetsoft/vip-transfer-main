@@ -30,7 +30,7 @@ export function Booking() {
             <div className="mt-12 flex flex-col gap-4 border-t border-border/40 pt-8">
               <div className="flex items-center gap-4">
                 <span className="text-[10px] font-light tracking-[0.3em] text-hint uppercase w-20">{t.booking.phone}</span>
-                <a href="tel:+4930123456789" className="text-sm font-light text-foreground transition-colors hover:text-silver">+49 30 1234 5678</a>
+                <a href="tel:+48731591155" className="text-sm font-light text-foreground transition-colors hover:text-silver">+48 731 591 155</a>
               </div>
               <div className="flex items-center gap-4">
                 <span className="text-[10px] font-light tracking-[0.3em] text-hint uppercase w-20">{t.booking.email}</span>
