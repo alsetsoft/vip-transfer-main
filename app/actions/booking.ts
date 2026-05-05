@@ -24,13 +24,15 @@ export type BookingPayload = {
   special_requests?: string
 }
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.GMAIL_USER,
-    pass: process.env.GMAIL_APP_PASSWORD,
-  },
-})
+function getTransporter() {
+  return nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: process.env.GMAIL_USER,
+      pass: process.env.GMAIL_APP_PASSWORD,
+    },
+  })
+}
 
 function formatBookingEmail(payload: BookingPayload): string {
   const lines: string[] = [
@@ -87,7 +89,7 @@ export async function submitBooking(payload: BookingPayload) {
       html: formatBookingEmail(payload),
     }
 
-    await transporter.sendMail(mailOptions)
+    await getTransporter().sendMail(mailOptions)
     console.log("[booking] Email sent successfully")
     return { success: true }
   } catch (error) {
